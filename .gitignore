@@ -29,6 +29,7 @@ sysinfo.txt
 *.apk
 *.unitypackage
 
+
 #large files
 *.png
 *.psd
