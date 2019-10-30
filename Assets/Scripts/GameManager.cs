@@ -1,31 +1,46 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Networking;
 using UnityStandardAssets.Vehicles.Car;
 
-public class GameManager : MonoBehaviour
+public class GameManager : NetworkBehaviour
 {
     public static GameManager instance;
-    public Camera[] playerCameras = new Camera[2];
-    public CarUserControl[] cars;
+    //public Camera playerCamera;
+    public GameObject[] carPrefabs;
+    public PlayerControl localPlayer;
     private void Awake()
     {
         instance = this;
     }
+    public override void OnStartClient()
+    {
+        Debug.Log("gamemanager client");
+    }
+    /*
+    public override void OnStartClient()
+    {
+        GameObject car;
+        NetworkManager networkManager = GameObject.FindObjectOfType<NetworkManager>();
+        int playerCount = GameObject.FindGameObjectsWithTag("Player").Length;
+        if (playerCount > 1)
+        {
+            return;
+        }
+        if (playerCount == 1)
+        {
+            networkManager.playerPrefab = carPrefabs[1 - GameObject.FindObjectOfType<PlayerControl>().prefabIndex];
+            //car = Instantiate(carPrefabs[1 - GameObject.FindObjectOfType<PlayerControl>().prefabIndex]);
+        }
+        else
+        {
+            networkManager.playerPrefab = carPrefabs[0];
+            // car = Instantiate(carPrefabs[0]);
+        }
+        //localPlayer = car.GetComponent<PlayerControl>();
 
-    public float CarDistance()
-    {
-        if (playerCameras == null) return 0;
-        if (playerCameras.Length < 2) return 0;
-        return Vector3.Distance(playerCameras[0].transform.position, playerCameras[1].transform.position);
+        ClientScene.AddPlayer(0);
     }
-    void Start()
-    {
-        
-    }
-    
-    void Update()
-    {
-        
-    }
+    */
 }

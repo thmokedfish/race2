@@ -5,6 +5,7 @@ using UnityStandardAssets.Vehicles.Car;
 
 public class FaceCamera : MonoBehaviour
 {
+    /*
     private Camera target;
     private void Start()
     {
@@ -20,4 +21,5 @@ public class FaceCamera : MonoBehaviour
     {
         transform.LookAt(target.transform);
     }
+    */
 }
