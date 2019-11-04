@@ -12,7 +12,7 @@ public class Health : NetworkBehaviour
 
     public override void OnStartLocalPlayer()
     {
-        hpSlider = UIManager.instance.hpSlider;
+        hpSlider = UIManager.Instance.hpSlider;
         if(!hpSlider)
         {
             Debug.Log("no hpSlider");

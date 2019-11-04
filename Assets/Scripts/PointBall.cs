@@ -1,19 +1,24 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
-public class PointBall : MonoBehaviour
+using UnityEngine.Networking;
+using UnityEngine.Events;
+public class PointBall : NetworkBehaviour
 {
+    public UnityEvent ballTrigged = new UnityEvent();
     void OnTriggerEnter(Collider collider)
     {
-        if(collider.name=="PlayerCollider1")
+
+        PlayerControl playerControl;
+        Debug.Log(collider.name);
+        if ((playerControl = collider.transform.root.GetComponent<PlayerControl>()))
         {
-            ScoreManager.Instance.getBall(0);
-            Destroy(this.gameObject);
-        }
-        if (collider.name == "PlayerCollider2")
-        {
-            ScoreManager.Instance.getBall(1);
+            Debug.Log("trigger enter");
+            if (!isServer)
+            {
+                return;
+            }
+            ScoreManager.Instance.GetBall(playerControl.playerID);
             Destroy(this.gameObject);
         }
     }

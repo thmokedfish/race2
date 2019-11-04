@@ -15,14 +15,15 @@ public class PlayerControl :NetworkBehaviour
     private bool canShoot;
     [Range(0,1)]
     public int prefabIndex;
+    public int playerID { get; }//根据玩家的加入顺序,从0往后排
     public Transform cameraTarget;
     private void Awake()
     {
-        playerCamera = Camera.main;
     }
     public override void OnStartLocalPlayer()
     {
-        crosshair = UIManager.instance.crosshair;
+        playerCamera = Camera.main;
+        crosshair = UIManager.Instance.crosshair;
         // target = GameManager.instance.cars[1 - (int)player].transform;
         muzzle = this.transform.Find("Muzzle");
         shootButton = KeyCode.LeftShift;
@@ -43,7 +44,7 @@ public class PlayerControl :NetworkBehaviour
 
     void Update()
     {
-        if(!isLocalPlayer)
+        if (!isLocalPlayer)
         {
             return;
         }

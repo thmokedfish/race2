@@ -4,8 +4,11 @@ using UnityEngine;
 using UnityEngine.Networking;
 using UnityStandardAssets.Vehicles.Car;
 
-public class GameManager : NetworkBehaviour
+public class GameManager:MonoBehaviour
 {
+
+   // public SyncListBool isAvailable;      //几种车型是否可选
+    //private bool[] IsAvailable;
     public static GameManager instance;
     //public Camera playerCamera;
     public GameObject[] carPrefabs;
@@ -13,10 +16,6 @@ public class GameManager : NetworkBehaviour
     private void Awake()
     {
         instance = this;
-    }
-    public override void OnStartClient()
-    {
-        Debug.Log("gamemanager client");
     }
     /*
     public override void OnStartClient()

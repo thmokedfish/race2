@@ -2,93 +2,109 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-
-public class ScoreManager : MonoBehaviour
+using UnityEngine.Networking;
+public class ScoreManager : NetworkBehaviour
 {
-    private static ScoreManager _Instance;
-    public static ScoreManager Instance
-    {
-        get { return _Instance; }
-    }
+    public static ScoreManager Instance { get; private set; }
     private int nextBallScore;
-    private float[] playerScore;
-    public Image timingImage;
-    public Sprite[] timingSprite;
+    private List<int> playerScore = new List<int>();      //每当有玩家连接，add++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+    private List<Text> scoreText = new List<Text>();      //每当有玩家连接，add++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+    private Image timingImage;
+    private List<Sprite> timingSprites = new List<Sprite>(5);
     public Vector3 centerPoint;
     public float radius;
     public int totalBallCount;
+    public Button startButton;
     private Text winText;
     void Awake()
     {
-        _Instance = this;
+        Instance = this;
+        //timingSprite赋初值 
+        int i = 0;
+        Sprite s;
+        while (true)
+        {
+            i++;
+            s = Resources.Load<Sprite>("Textures/" + i);
+            if(s==null)
+            { break; }
+            timingSprites.Add(s);
+        }
     }
-    void Start()
+    public override void OnStartServer()
     {
-        // ballRefreshTiming = GameObject.Find("Canvas/RefreshTiming").GetComponent<Slider>();
-        //ballRefreshTiming.gameObject.SetActive(false);
-        newInitiate();
-        varInitiate();
-        refreshScoreText();
-        timingImage.gameObject.SetActive(false);
-        //StartCoroutine(nextBall());
-    }
-
-    private void newInitiate()
-    {
-        playerScore = new float[2];
-    }
-    private void varInitiate()
-    {
+        Debug.Log("score manager startserver");
+        startButton=Instantiate(this.startButton, UIManager.Instance.transform);
+        startButton.onClick.AddListener(StartGame);
         nextBallScore = 1;
-        playerScore[0] = 0;
-        playerScore[1] = 0;
     }
-    public void getBall(int playernum)
+    private void Start()
     {
-        getPoint(playernum, nextBallScore);
+        timingImage = UIManager.Instance.timingImage;
+        winText = UIManager.Instance.winText;
+    }
+    public void GetBall(int playerID)
+    {
+        GetPoint(playerID, nextBallScore);
         totalBallCount--;
         if (totalBallCount <= 0)
         {
             if (playerScore[0] > playerScore[1])
             {
-                winText.text = "Player1 Win!";
+                SetWinner(0);
             }
             else if (playerScore[0] < playerScore[1])
             {
-                winText.text = "Player2 Win!";
+                SetWinner(1);
             }
             else if (playerScore[0] == playerScore[1])
             {
-                winText.text = "Draw!";
+                SetWinner(-1);
             }
-            winText.gameObject.SetActive(true);
         }
         else
         {
             nextBallScore++;
-            StartCoroutine(nextBall());
+            //StartCoroutine(StartTiming());
+            CmdStartTiming();
         }
     }
-    public void getPoint(int playernum,int score)
+    public void GetPoint(int playerID,int score)
     {
-        playerScore[playernum] +=score;
-        refreshScoreText();
+        playerScore[playerID] +=score;
+        RefreshScoreText(playerID);
     }
-    public void refreshScoreText()
+    public void RefreshScoreText(int playerID)
     {
+        scoreText[playerID].text = "Player" + playerID + ": " + playerScore[playerID];
     }
-    IEnumerator nextBall()
+    private void StartGame()
+    {
+        // StartCoroutine(StartTiming());
+        CmdStartTiming();
+    }
+
+    [Command]
+    void CmdStartTiming()
+    {
+        StartCoroutine(StartTiming());
+    }
+    IEnumerator StartTiming()
     {
         timingImage.gameObject.SetActive(true);
-        for (int i =0; i <timingSprite.Length; i++)
+        for (int i =timingSprites.Count-1; i >=0; i--)
         {
-            timingImage.sprite = timingSprite[i];
+            timingImage.sprite = timingSprites[i];
             yield return new WaitForSeconds(1);
         }
         timingImage.gameObject.SetActive(false);
-        createBall();
+
+        if (isServer)                             //server calling create ball
+        {
+            ServerCreateBall();
+        }
     }
-    void createBall()
+    void ServerCreateBall()
     {
         Vector3 ballPosition = new Vector3((Random.value*2 -1) * radius+centerPoint.x, 25, (Random.value * 2 - 1) * radius+centerPoint.z);
         RaycastHit hit;
@@ -104,5 +120,19 @@ public class ScoreManager : MonoBehaviour
             }
         }
         GameObject ball = Instantiate(Resources.Load<GameObject>("PointBall"),ballPosition,new Quaternion ());
+        NetworkServer.Spawn(ball);//spawn ball for clients
+        //ball.GetComponent<PointBall>().ballTrigged.AddListener();
+    }
+    public void SetWinner(int index)
+    {
+        if (index == -1)
+        {
+            winText.text = "Draw!";
+        }
+        else
+        {
+            winText.text = "Player" + index + " wins!";
+        }
+        winText.gameObject.SetActive(true);
     }
 }

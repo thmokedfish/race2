@@ -12,25 +12,66 @@ public class MyNetworkManager : NetworkManager
         {
             // Ready/AddPlayer is usually triggered by a scene load completing. if no scene was loaded, then Ready/AddPlayer it here instead.
             ClientScene.Ready(conn);
+            /*
             if (autoCreatePlayer)
             {
                 Debug.LogWarning("auto create player");
                 ClientScene.AddPlayer(0);
             }
-            else
-            {
-                //customOnConnect();
-            }
+            */
         }
     }
+    public override void OnServerAddPlayer(NetworkConnection conn, short playerControllerId)
+    {
+        if (carPrefabs.Length==0)
+        {
+            if (LogFilter.logError) { Debug.LogError("The PlayerPrefab is empty on the NetworkManager. Please setup a PlayerPrefab object."); }
+            return;
+        }
+
+        if (playerControllerId < conn.playerControllers.Count && conn.playerControllers[playerControllerId].IsValid && conn.playerControllers[playerControllerId].gameObject != null)
+        {
+            if (LogFilter.logError) { Debug.LogError("There is already a player at that playerControllerId for this connections."); }
+            return;
+        }
+
+        GameObject player;
+        Transform startPos = GetStartPosition();
+        GameObject prefab;
+        if(GameObject.FindObjectOfType<PlayerControl>())
+        {
+            prefab = carPrefabs[1];
+        }
+        else
+        {
+            prefab = carPrefabs[0];
+        }
+        if (prefab.GetComponent<NetworkIdentity>() == null)
+        {
+            if (LogFilter.logError) { Debug.LogError("The PlayerPrefab does not have a NetworkIdentity. Please add a NetworkIdentity to the player prefab."); }
+            return;
+        }
+
+        if (startPos != null)
+        {
+            player = (GameObject)Instantiate(prefab, startPos.position, startPos.rotation);
+        }
+        else
+        {
+            player = (GameObject)Instantiate(prefab, Vector3.zero, Quaternion.identity);
+        }
+
+        NetworkServer.AddPlayerForConnection(conn, player, playerControllerId);
+    }
+
     private void Update()
     {
-        if(Input.GetKeyDown(KeyCode.I))
+        if(Input.GetKeyDown(KeyCode.I))  //模拟选择车型触发
         {
-            customOnConnect();
+            customAddplayer();
         }
     }
-    public void customOnConnect()
+    public void customAddplayer()
     {
 
         GameObject car;
@@ -40,6 +81,7 @@ public class MyNetworkManager : NetworkManager
         {
             return;
         }
+        /*
         if (playerCount == 1)
         {
            //playerPrefab = carPrefabs[1 - GameObject.FindObjectOfType<PlayerControl>().prefabIndex];
@@ -52,7 +94,7 @@ public class MyNetworkManager : NetworkManager
             // car = Instantiate(carPrefabs[0]);
         }
         //localPlayer = car.GetComponent<PlayerControl>();
-
+        */
         ClientScene.AddPlayer(0);
     }
 }
