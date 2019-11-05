@@ -21,7 +21,7 @@ Category {
 				#include "UnityCG.cginc"
 
 				struct v2f {
-					float4 pos : POSITION;
+					float4 pos : SV_POSITION;
 					half2 uv : TEXCOORD0;
 				};
 
@@ -39,7 +39,7 @@ Category {
 				sampler2D _MainTex;
 				fixed4 _Color;
 
-				fixed4 frag( v2f i ) : COLOR
+				fixed4 frag( v2f i ) : SV_Target
 				{
 					return 2.0f * _Color * tex2D( _MainTex, i.uv );
 				}
