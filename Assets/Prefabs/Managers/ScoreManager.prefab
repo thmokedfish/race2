@@ -44,15 +44,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 278f953b808767647bf74152273efdd5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timingSprite:
-  - {fileID: 21300000, guid: cfe18fa49347d6f41af81e01fb4238c2, type: 3}
-  - {fileID: 21300000, guid: e7b372e48133ea8418be5976a560c9cb, type: 3}
-  - {fileID: 21300000, guid: 9ffbfa21a0c40f847a09dbbe8fba2c65, type: 3}
-  - {fileID: 21300000, guid: 0c550994e062f8944b088ce4060e47d0, type: 3}
-  - {fileID: 21300000, guid: 1cd11c066a965154183b5691b236b173, type: 3}
   centerPoint: {x: 128, y: 0, z: 128}
   radius: 128
   totalBallCount: 5
+  startButton: {fileID: 6946588656670237871, guid: 6d9b3833acffbc24da435897f941ea84,
+    type: 3}
 --- !u!114 &8128151471991203346
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -84,5 +80,5 @@ MonoBehaviour:
     i13: 0
     i14: 0
     i15: 0
-  m_ServerOnly: 1
+  m_ServerOnly: 0
   m_LocalPlayerAuthority: 0

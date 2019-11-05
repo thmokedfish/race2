@@ -66,7 +66,7 @@ public class ScoreManager : NetworkBehaviour
         {
             nextBallScore++;
             //StartCoroutine(StartTiming());
-            CmdStartTiming();
+            RpcStartTiming();
         }
     }
     public void GetPoint(int playerID,int score)
@@ -81,12 +81,13 @@ public class ScoreManager : NetworkBehaviour
     private void StartGame()
     {
         // StartCoroutine(StartTiming());
-        CmdStartTiming();
+        RpcStartTiming();
     }
 
-    [Command]
-    void CmdStartTiming()
+    [ClientRpc]
+    void RpcStartTiming()
     {
+        Debug.Log("rpc starttimging");
         StartCoroutine(StartTiming());
     }
     IEnumerator StartTiming()
