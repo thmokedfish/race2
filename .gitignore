@@ -38,3 +38,66 @@ sysinfo.txt
 *.dds
 *.tif
 *.hdr
+*.png.meta
+*.psd.meta
+Assets/models/1111.meta
+Assets/models/1111/1_DefaultMaterial_AO.tga.meta
+Assets/models/1111/1_DefaultMaterial_BaseColor.tga.meta
+Assets/models/1111/1_DefaultMaterial_Metallic.tga.meta
+Assets/models/1111/1_DefaultMaterial_Normal.tga.meta
+Assets/models/1111/1_DefaultMaterial_Roughness.tga.meta
+Assets/models/车/DAOCHU.meta
+Assets/models/车/DAOCHU/cargai_22 - Default_AO.tga.meta
+Assets/models/车/DAOCHU/cargai_22 - Default_BaseColor.tga.meta
+Assets/models/车/DAOCHU/cargai_22 - Default_Metallic.tga.meta
+Assets/models/车/DAOCHU/cargai_22 - Default_Normal.tga.meta
+Assets/models/车/DAOCHU/cargai_22 - Default_Roughness.tga.meta
+Assets/models/车/DAOCHU/cargai_24 - Default_AO.tga.meta
+Assets/models/车/DAOCHU/cargai_24 - Default_BaseColor.tga.meta
+Assets/models/车/DAOCHU/cargai_24 - Default_Metallic.tga.meta
+Assets/models/车/DAOCHU/cargai_24 - Default_Normal.tga.meta
+Assets/models/车/DAOCHU/cargai_24 - Default_Roughness.tga.meta
+Assets/models/塔/ta_01 - Default_AO.tga.meta
+Assets/models/塔/ta_01 - Default_BaseColor.tga.meta
+Assets/models/塔/ta_01 - Default_Metallic.tga.meta
+Assets/models/塔/ta_01 - Default_Normal.tga.meta
+Assets/Plugins/FORGE3D/Sci-Fi Effects/Effects/Burnout/Textures.meta
+Assets/Plugins/FORGE3D/Sci-Fi Effects/Effects/Debris/Textures.meta
+Assets/Plugins/FORGE3D/Sci-Fi Effects/Effects/Explosions/Textures.meta
+Assets/Plugins/FORGE3D/Sci-Fi Effects/Effects/Flames/Textures.meta
+Assets/Plugins/FORGE3D/Sci-Fi Effects/Effects/Heat/Textures.meta
+Assets/Plugins/FORGE3D/Sci-Fi Effects/Effects/Holographic/Textures.meta
+Assets/Plugins/FORGE3D/Sci-Fi Effects/Effects/Laser Impulse/Textures.meta
+Assets/Plugins/FORGE3D/Sci-Fi Effects/Effects/Laser Impulse/Textures/Red.meta
+Assets/Plugins/FORGE3D/Sci-Fi Effects/Effects/Lightning Gun/Textures.meta
+Assets/Plugins/FORGE3D/Sci-Fi Effects/Effects/Missiles/Textures.meta
+Assets/Plugins/FORGE3D/Sci-Fi Effects/Effects/Nebula/Textures.meta
+Assets/Plugins/FORGE3D/Sci-Fi Effects/Effects/Plasma Beam/Textures.meta
+Assets/Plugins/FORGE3D/Sci-Fi Effects/Effects/Plasma Gun/Textures.meta
+Assets/Plugins/FORGE3D/Sci-Fi Effects/Effects/Pulsewave/Textures.meta
+Assets/Plugins/FORGE3D/Sci-Fi Effects/Effects/Rail Gun/Textures.meta
+Assets/Plugins/FORGE3D/Sci-Fi Effects/Effects/Seeker Bolt/Textures.meta
+Assets/Plugins/FORGE3D/Sci-Fi Effects/Effects/Shot Gun/Textures.meta
+Assets/Plugins/FORGE3D/Sci-Fi Effects/Effects/Sniper/Textures.meta
+Assets/Plugins/FORGE3D/Sci-Fi Effects/Effects/Solo Gun/Textures.meta
+Assets/Plugins/FORGE3D/Sci-Fi Effects/Effects/Trails/Textures.meta
+Assets/Plugins/FORGE3D/Sci-Fi Effects/Effects/Vulcan/Textures.meta
+Assets/Plugins/FORGE3D/Sci-Fi Effects/Effects/Warp Jump/Textures.meta
+Assets/Plugins/FORGE3D/Sci-Fi Effects/Effects/Warp Tunnel/Textures.meta
+Assets/Plugins/FORGE3D/Sci-Fi Effects/Examples/Textures.meta
+Assets/Plugins/FORGE3D/Sci-Fi Effects/Examples/Legacy Turret/Textures.meta
+Assets/Plugins/FORGE3D/Sci-Fi Effects/Turrets/Textures.meta
+Assets/Plugins/FORGE3D/Sci-Fi Effects/Turrets/Textures/Mobile.meta
+Assets/Gaia/Stamps.meta
+Assets/Gaia/Stamps/Adhoc.meta
+Assets/Gaia/Stamps/Bases.meta
+Assets/Gaia/Stamps/Hills.meta
+Assets/Gaia/Stamps/Islands.meta
+Assets/Gaia/Stamps/Lakes.meta
+Assets/Gaia/Stamps/Mesas.meta
+Assets/Gaia/Stamps/Mountains.meta
+Assets/Gaia/Stamps/Rivers.meta
+Assets/Gaia/Stamps/Rocks.meta
+Assets/Gaia/Stamps/Valleys.meta
+Assets/Gaia/Stamps/Villages.meta
+Assets/Gaia/Stamps/Waterfalls.meta

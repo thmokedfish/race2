@@ -72,7 +72,7 @@ Material:
         m_Scale: {x: 100, y: 100}
         m_Offset: {x: 0, y: 0}
     m_Floats:
-    - _BrightnessCollision: 0.047
+    - _BrightnessCollision: 0.881
     - _BumpScale: 1
     - _CollisionPoint: 0.5
     - _Cutoff: 0.5
@@ -81,8 +81,8 @@ Material:
     - _EffectTime: 0
     - _Emission: 10
     - _FPOW: -1.35
-    - _FallOff: 0.74
-    - _FallOff2: 1
+    - _FallOff: 1.36
+    - _FallOff2: 2.06
     - _FallOffInt: 5
     - _Glossiness: 0.5
     - _Inside: 0
@@ -102,9 +102,9 @@ Material:
     - _UVSec: 0
     - _ZWrite: 1
     m_Colors:
-    - _Color: {r: 0.14440192, g: 0.31046957, b: 0.5188679, a: 1}
+    - _Color: {r: 0.6603774, g: 0.6603774, b: 0.6603774, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 0}
-    - _Position: {r: 1.35, g: 1.6287473, b: -0.05, a: 0}
+    - _Position: {r: 0, g: 0, b: 0, a: 0}
     - _ReflectColor: {r: 1, g: 1, b: 1, a: 0.5}
     - _ShieldColor: {r: 1, g: 0, b: 0, a: 1}
     - _SpecColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}

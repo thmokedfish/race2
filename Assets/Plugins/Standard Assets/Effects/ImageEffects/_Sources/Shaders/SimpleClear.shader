@@ -22,7 +22,7 @@ uniform sampler2D _MainTex;
 uniform float4 _MainTex_TexelSize;
  
 struct v2f {
-	float4 pos : POSITION;
+	float4 pos : SV_POSITION;
 };
 
 v2f vert( appdata_img v )
@@ -32,7 +32,7 @@ v2f vert( appdata_img v )
 	return o;
 }
 
-half4 frag (v2f i) : COLOR
+half4 frag (v2f i) : SV_Target
 {
 	return half4(0,0,0,0);
 }

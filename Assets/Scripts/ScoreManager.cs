@@ -11,7 +11,6 @@ public class ScoreManager : NetworkBehaviour
     private List<Text> scoreText = new List<Text>();      //每当有玩家连接，add++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
     private Image timingImage;
     private List<Sprite> timingSprites = new List<Sprite>(5);
-    public Vector3 centerPoint;
     public float radius;
     public int totalBallCount;
     public Button startButton;
@@ -107,17 +106,13 @@ public class ScoreManager : NetworkBehaviour
     }
     void ServerCreateBall()
     {
-        Vector3 ballPosition = new Vector3((Random.value*2 -1) * radius+centerPoint.x, 25, (Random.value * 2 - 1) * radius+centerPoint.z);
+        Vector3 ballPosition = new Vector3((Random.value*2 -1) * radius+this.transform.position.x, 25, (Random.value * 2 - 1) * radius+this.transform.position.z);
         RaycastHit hit;
         if (Physics.Raycast(ballPosition, Vector3.down, out hit))
         {
             if (hit.transform.tag == "Ground")
             {
                 ballPosition = hit.point + new Vector3(0, 1.5f, 0);
-            }
-            else
-            {
-                ballPosition = new Vector3((Random.value + 0.5f) * 100, 25, (Random.value + 0.5f) * 100);
             }
         }
         GameObject ball = Instantiate(Resources.Load<GameObject>("PointBall"),ballPosition,new Quaternion ());
