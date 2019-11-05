@@ -3,49 +3,50 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityStandardAssets.Vehicles.Car;
+using UnityEngine.Networking;
 
-public class PlayerContorl : MonoBehaviour
+public class PlayerControl :NetworkBehaviour
 {
     public KeyCode shootButton;
     public Camera playerCamera;
     public Transform muzzle;
     public Transform target;
     private Image crosshair;
-    private CarUserControl.PlayerName player;
     private bool canShoot;
-
-    void Start()
+    [Range(0,1)]
+    public int prefabIndex;
+    public Transform cameraTarget;
+    private void Awake()
     {
-        GameObject crosshairgo;
-        if (!(crosshairgo = GameObject.Find("Canvas/Crosshair" + ((int)this.GetComponent<CarUserControl>().player + 1))))
-        {
-            Debug.LogError("Canvas/Crosshair" + ((int)this.GetComponent<CarUserControl>().player + 1) + " not exist");
-            return;
-        }
-        crosshair = crosshairgo.GetComponent<Image>();
-        crosshair.gameObject.SetActive(false);
-        setPositionSide(crosshair.transform);
-        player = this.GetComponent<CarUserControl>().player;
-        target = GameManager.instance.cars[1 - (int)player].transform;
+        playerCamera = Camera.main;
+    }
+    public override void OnStartLocalPlayer()
+    {
+        crosshair = UIManager.instance.crosshair;
+        // target = GameManager.instance.cars[1 - (int)player].transform;
         muzzle = this.transform.Find("Muzzle");
-        if(player==CarUserControl.PlayerName.player1)
+        shootButton = KeyCode.LeftShift;
+        Debug.Log("OnStartLocalPlayer");
+        UnityStandardAssets.Cameras.AutoCam autoCam;
+        if (autoCam = Camera.main.transform.root.GetComponent<UnityStandardAssets.Cameras.AutoCam>())
         {
-            shootButton = KeyCode.LeftShift;
-        }
-        if(player == CarUserControl.PlayerName.player2)
-        {
-            shootButton = KeyCode.RightShift;
+            autoCam.SetTarget(this.cameraTarget);
         }
     }
 
+    /*
     void setPositionSide(Transform go)
     {
         go.localPosition = new Vector3(1, 0, 0) * Screen.width / 2 * ((int)this.GetComponent<CarUserControl>().player - 0.5f) +
             new Vector3(0, go.localPosition.y, go.localPosition.z);
-    }
+    }*/
 
     void Update()
     {
+        if(!isLocalPlayer)
+        {
+            return;
+        }
         if (Input.GetKey(shootButton))
         {
             Aim();

@@ -12,7 +12,6 @@ public class ScoreManager : MonoBehaviour
     }
     private int nextBallScore;
     private float[] playerScore;
-    private Text[] scoreText;
     public Image timingImage;
     public Sprite[] timingSprite;
     public Vector3 centerPoint;
@@ -31,17 +30,12 @@ public class ScoreManager : MonoBehaviour
         varInitiate();
         refreshScoreText();
         timingImage.gameObject.SetActive(false);
-        winText.gameObject.SetActive(false);
-        StartCoroutine(nextBall());
+        //StartCoroutine(nextBall());
     }
 
     private void newInitiate()
     {
-        scoreText = new Text[2];
         playerScore = new float[2];
-        scoreText[0] = GameObject.Find("Canvas/Score1").GetComponent<Text>();
-        scoreText[1] = GameObject.Find("Canvas/Score2").GetComponent<Text>();
-        winText = GameObject.Find("Canvas/WinText").GetComponent<Text>();
     }
     private void varInitiate()
     {
@@ -51,7 +45,7 @@ public class ScoreManager : MonoBehaviour
     }
     public void getBall(int playernum)
     {
-        getScore(playernum, nextBallScore);
+        getPoint(playernum, nextBallScore);
         totalBallCount--;
         if (totalBallCount <= 0)
         {
@@ -75,15 +69,13 @@ public class ScoreManager : MonoBehaviour
             StartCoroutine(nextBall());
         }
     }
-    public void getScore(int playernum,int score)
+    public void getPoint(int playernum,int score)
     {
         playerScore[playernum] +=score;
         refreshScoreText();
     }
     public void refreshScoreText()
     {
-        scoreText[0].text = "player1 score:" + playerScore[0];
-        scoreText[1].text = "player2 score:" + playerScore[1];
     }
     IEnumerator nextBall()
     {

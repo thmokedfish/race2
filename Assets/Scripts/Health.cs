@@ -3,48 +3,38 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityStandardAssets.Vehicles.Car;
-
-public class Health : MonoBehaviour
+using UnityEngine.Networking;
+public class Health : NetworkBehaviour
 {
     public int health;
     public int fullhealth;
     private Slider hpSlider;
-    void Start()
+
+    public override void OnStartLocalPlayer()
     {
-        GameObject hpSlidergo;
-        if (!(hpSlidergo = GameObject.Find("Canvas/HPSlider" +( (int)this.GetComponent<CarUserControl>().player+1))))
+        hpSlider = UIManager.instance.hpSlider;
+        if(!hpSlider)
         {
-            Debug.LogError("Canvas/HPSlider" + ((int)this.GetComponent<CarUserControl>().player + 1) + " not exist");
+            Debug.Log("no hpSlider");
             return;
         }
-        hpSlider =hpSlidergo.GetComponent<Slider>();
-        setPositionSide(hpSlider.transform);
+        hpSlider.gameObject.SetActive(true);
         health = fullhealth;
-    }
-
-    void setPositionSide(Transform go)
-    {
-        go.localPosition = new Vector3(1, 0, 0) * Screen.width / 2 * ((int)this.GetComponent<CarUserControl>().player - 0.5f) +
-            new Vector3(0, go.localPosition.y, go.localPosition.z);
     }
 
     public float dropAmount = 1;
     void Update()
     {
-        if (hpSlider)
+        if(!isLocalPlayer)
+        { return; }
+        if (hpSlider.value > health / (float)fullhealth)
         {
-            if(hpSlider.value > health /(float) fullhealth)
-            {
-                hpSlider.value -= dropAmount * Time.deltaTime;
-            }
-            if(hpSlider.value<health/(float)fullhealth)
-            {
-                hpSlider.value = health / (float)fullhealth;
-            }
+            hpSlider.value -= dropAmount * Time.deltaTime;
         }
         else
         {
-            Debug.Log("no slider");
+            hpSlider.value = health / (float)fullhealth;
         }
+
     }
 }

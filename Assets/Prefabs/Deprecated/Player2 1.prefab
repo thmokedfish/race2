@@ -5739,7 +5739,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &8968579343194690291
 Transform:
   m_ObjectHideFlags: 0
@@ -5795,6 +5795,8 @@ MonoBehaviour:
   playerCamera: {fileID: 0}
   muzzle: {fileID: 0}
   target: {fileID: 0}
+  prefabIndex: 0
+  cameraTarget: {fileID: 0}
 --- !u!114 &8968579343194690290
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5809,6 +5811,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: 100
   fullhealth: 100
+  dropAmount: 1
 --- !u!114 &8968579343194690301
 MonoBehaviour:
   m_ObjectHideFlags: 0
