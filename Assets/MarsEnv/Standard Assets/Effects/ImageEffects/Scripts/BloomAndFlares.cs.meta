@@ -1,8 +1,7 @@
 fileFormatVersion: 2
-guid: fc3ab20126de1d84cbc823f6b934d775
-timeCreated: 1456376449
-licenseType: Store
+guid: 6a6003da7ae8a2545b783ad4e4902809
 MonoImporter:
+  externalObjects: {}
   serializedVersion: 2
   defaultReferences:
   - lensFlareVignetteMask: {fileID: 2800000, guid: 95ef4804fe0be4c999ddaa383536cde8,

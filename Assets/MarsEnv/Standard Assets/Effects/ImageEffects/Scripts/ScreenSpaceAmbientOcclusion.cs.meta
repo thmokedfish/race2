@@ -1,8 +1,7 @@
 fileFormatVersion: 2
-guid: 6c7fc4e97d2d0e84fb068a3b7421a9ef
-timeCreated: 1456376448
-licenseType: Store
+guid: f86ef04529d0e474ab1ba215338f9073
 MonoImporter:
+  externalObjects: {}
   serializedVersion: 2
   defaultReferences:
   - m_SSAOShader: {fileID: 4800000, guid: 43ca18288c424f645aaa1e9e07f04c50, type: 3}
