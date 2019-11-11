@@ -44,7 +44,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 278f953b808767647bf74152273efdd5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  centerPoint: {x: 128, y: 0, z: 128}
   radius: 128
   totalBallCount: 5
   startButton: {fileID: 6946588656670237871, guid: 6d9b3833acffbc24da435897f941ea84,
