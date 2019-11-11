@@ -1,8 +1,7 @@
 fileFormatVersion: 2
-guid: aff21630a3d178247b8c1361fd8723da
-timeCreated: 1456376448
-licenseType: Store
+guid: 432d88e420e102445845db1902394bcd
 MonoImporter:
+  externalObjects: {}
   serializedVersion: 2
   defaultReferences:
   - sunTransform: {instanceID: 0}

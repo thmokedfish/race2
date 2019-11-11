@@ -1,8 +1,7 @@
 fileFormatVersion: 2
-guid: 470ab50522e69fc48ae5e22c6eca21b6
-timeCreated: 1456376448
-licenseType: Store
+guid: 409a067b09faf5841a966f6e98cab791
 MonoImporter:
+  externalObjects: {}
   serializedVersion: 2
   defaultReferences:
   - vignetteShader: {fileID: 4800000, guid: 627943dc7a9a74286b70a4f694a0acd5, type: 3}

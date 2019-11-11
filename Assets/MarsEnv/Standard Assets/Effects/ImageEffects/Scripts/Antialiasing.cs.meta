@@ -1,8 +1,7 @@
 fileFormatVersion: 2
-guid: ef54b7b394592eb42ab436b62c770641
-timeCreated: 1456376448
-licenseType: Store
+guid: b8b8a265d91a27d46b837c5e88c11f85
 MonoImporter:
+  externalObjects: {}
   serializedVersion: 2
   defaultReferences:
   - ssaaShader: {fileID: 4800000, guid: b3728d1488b02490cbd196c7941bf1f8, type: 3}
