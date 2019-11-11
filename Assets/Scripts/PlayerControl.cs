@@ -2,45 +2,43 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using UnityStandardAssets.Vehicles.Car;
 using UnityEngine.Networking;
+using Cinemachine;
 
 public class PlayerControl :NetworkBehaviour
 {
-    public KeyCode shootButton;
-    public Camera playerCamera;
-    public Transform muzzle;
-    public Transform target;
-    private Image crosshair;
-    private bool canShoot;
+    bool isFiring; // Is turret currently in firing state
+    public CinemachineFreeLook FreeLookCam;
+    //public KeyCode shootButton;
+   // private Camera playerCamera;
+    //public Transform muzzle;
+    //Transform target;
+    public Forge3D.F3DPlayerTurretController turrent;
+    //private Image crosshair;
+   // private bool canShoot;
     [Range(0,1)]
     public int prefabIndex;
     public int playerID { get; }//根据玩家的加入顺序,从0往后排
     public Transform cameraTarget;
-    private void Awake()
-    {
-    }
+
     public override void OnStartLocalPlayer()
     {
-        playerCamera = Camera.main;
-        crosshair = UIManager.Instance.crosshair;
+        //crosshair = UIManager.Instance.crosshair;
         // target = GameManager.instance.cars[1 - (int)player].transform;
-        muzzle = this.transform.Find("Muzzle");
-        shootButton = KeyCode.LeftShift;
+       // muzzle = this.transform.Find("Muzzle");
+       // InitTurret();
         Debug.Log("OnStartLocalPlayer");
-        UnityStandardAssets.Cameras.AutoCam autoCam;
-        if (autoCam = Camera.main.transform.root.GetComponent<UnityStandardAssets.Cameras.AutoCam>())
-        {
-            autoCam.SetTarget(this.cameraTarget);
-        }
+        FreeLookCam.gameObject.SetActive(true);
+    }
+    private void Start()
+    {
+        InitTurret();
+    }
+    void InitTurret()
+    {
+        turrent.isLocal = isLocalPlayer;
     }
 
-    /*
-    void setPositionSide(Transform go)
-    {
-        go.localPosition = new Vector3(1, 0, 0) * Screen.width / 2 * ((int)this.GetComponent<CarUserControl>().player - 0.5f) +
-            new Vector3(0, go.localPosition.y, go.localPosition.z);
-    }*/
 
     void Update()
     {
@@ -48,6 +46,7 @@ public class PlayerControl :NetworkBehaviour
         {
             return;
         }
+        /*
         if (Input.GetKey(shootButton))
         {
             Aim();
@@ -59,7 +58,49 @@ public class PlayerControl :NetworkBehaviour
             if (!canShoot) return;
             Shoot();
         }
+        */
+
+        if (!isFiring && Input.GetKeyDown(KeyCode.Mouse0))
+        {
+            CmdFire();
+            isFiring = true;
+        }
+
+        if (isFiring && Input.GetKeyUp(KeyCode.Mouse0))
+        {
+            isFiring = false;
+            CmdStopFire();
+        }
+
     }
+
+    [Command]
+    void CmdFire()
+    {
+        //network identity "spawn"
+        Debug.Log("cmd fire");
+        RpcFire();
+    }
+
+    [ClientRpc]
+    void RpcFire()
+    {
+        Debug.Log("rpc fire");
+        turrent.fxController.Fire();
+    }
+
+    [Command]
+    void CmdStopFire()
+    {
+        RpcStopFire();
+    }
+
+    [ClientRpc]
+    void RpcStopFire()
+    {
+        turrent.fxController.Stop();
+    }
+    /*
     private void Aim()
     {
         if (!crosshair.IsActive())
@@ -103,4 +144,33 @@ public class PlayerControl :NetworkBehaviour
         GameObject missile = Instantiate(Resources.Load("Missile") as GameObject, muzzle.position, muzzle.rotation);
         missile.GetComponent<Missile>().target = target;
     }
+    */
+    void SetAutoCam()
+    {
+        UnityStandardAssets.Cameras.AutoCam autoCam;
+        if (autoCam = Camera.main.transform.root.GetComponent<UnityStandardAssets.Cameras.AutoCam>())
+        {
+            autoCam.SetTarget(this.cameraTarget);
+        }
+    }
+    
+    void SetFreeLookCam()
+    {
+        CinemachineFreeLook freeLookCam;
+        freeLookCam = GameObject.FindObjectOfType<CinemachineFreeLook>();
+        if (freeLookCam)
+        {
+            freeLookCam.LookAt = this.cameraTarget;
+            freeLookCam.Follow = this.cameraTarget;
+        }
+    }
+
+    
+    /*
+    void setPositionSide(Transform go)
+    {
+        go.localPosition = new Vector3(1, 0, 0) * Screen.width / 2 * ((int)this.GetComponent<CarUserControl>().player - 0.5f) +
+            new Vector3(0, go.localPosition.y, go.localPosition.z);
+    }
+    */
 }

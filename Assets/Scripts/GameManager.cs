@@ -2,8 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Networking;
-using UnityStandardAssets.Vehicles.Car;
-
+using Cinemachine;
 public class GameManager:MonoBehaviour
 {
 
@@ -16,6 +15,7 @@ public class GameManager:MonoBehaviour
     private void Awake()
     {
         instance = this;
+        Camera.main.gameObject.AddComponent(typeof(CinemachineBrain));
     }
     /*
     public override void OnStartClient()

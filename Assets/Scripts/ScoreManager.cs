@@ -82,7 +82,6 @@ public class ScoreManager : NetworkBehaviour
         // StartCoroutine(StartTiming());
         RpcStartTiming();
     }
-
     [ClientRpc]
     void RpcStartTiming()
     {
