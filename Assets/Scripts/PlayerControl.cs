@@ -9,25 +9,20 @@ public class PlayerControl :NetworkBehaviour
 {
     bool isFiring; // Is turret currently in firing state
     public CinemachineFreeLook FreeLookCam;
-    //public KeyCode shootButton;
-   // private Camera playerCamera;
-    //public Transform muzzle;
-    //Transform target;
     public Forge3D.F3DPlayerTurretController turrent;
-    //private Image crosshair;
-   // private bool canShoot;
     [Range(0,1)]
     public int prefabIndex;
     public int playerID { get; }//根据玩家的加入顺序,从0往后排
     public Transform cameraTarget;
     bool isCursorLocked;
-
+    Crosshair crosshair;
+    private void Awake()
+    {
+        crosshair = UIManager.Instance.crosshair.GetComponent<Crosshair>();
+    }
     public override void OnStartLocalPlayer()
     {
-        //crosshair = UIManager.Instance.crosshair;
-        // target = GameManager.instance.cars[1 - (int)player].transform;
-       // muzzle = this.transform.Find("Muzzle");
-       // InitTurret();
+
         Debug.Log("OnStartLocalPlayer");
         CursorLock(true);
         FreeLookCam.gameObject.SetActive(true);
@@ -48,20 +43,6 @@ public class PlayerControl :NetworkBehaviour
         {
             return;
         }
-        /*
-        if (Input.GetKey(shootButton))
-        {
-            Aim();
-        }
-
-        if (Input.GetKeyUp(shootButton))
-        {
-            crosshair.gameObject.SetActive(false);
-            if (!canShoot) return;
-            Shoot();
-        }
-        */
-
         if(Input.GetKeyDown(KeyCode.Escape))
         {
             CursorLock(!isCursorLocked);
@@ -78,6 +59,7 @@ public class PlayerControl :NetworkBehaviour
             isFiring = false;
             CmdStopFire();
         }
+        crosshair.increase = isFiring;
 
     }
 
