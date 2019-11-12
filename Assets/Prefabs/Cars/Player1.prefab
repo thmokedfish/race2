@@ -963,10 +963,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   FreeLookCam: {fileID: 5761790183437542647}
-  shootButton: 0
-  playerCamera: {fileID: 0}
-  muzzle: {fileID: 615978387379603127}
-  target: {fileID: 0}
   turrent: {fileID: 965164430163756681}
   prefabIndex: 0
   cameraTarget: {fileID: 615978386723286448}
@@ -1017,10 +1013,10 @@ MonoBehaviour:
   m_MaximumSteerAngle: 25
   m_SteerHelper: 0.644
   m_TractionControl: 1
-  m_FullTorqueOverAllWheels: 2500
+  m_FullTorqueOverAllWheels: 5000
   m_ReverseTorque: 500
   m_MaxHandbrakeTorque: 100000000
-  m_Downforce: 100
+  m_Downforce: 1000
   m_SpeedType: 0
   m_Topspeed: 150
   m_RevRangeBoundary: 1
@@ -7879,74 +7875,6 @@ PrefabInstance:
     - target: {fileID: 2727663711536940610, guid: 43ba7af9c92dc574fb2cc1542d0b470c,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 456063826, guid: 43ba7af9c92dc574fb2cc1542d0b470c, type: 3}
-      propertyPath: m_AssetId.i0
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 456063826, guid: 43ba7af9c92dc574fb2cc1542d0b470c, type: 3}
-      propertyPath: m_AssetId.i1
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 456063826, guid: 43ba7af9c92dc574fb2cc1542d0b470c, type: 3}
-      propertyPath: m_AssetId.i2
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 456063826, guid: 43ba7af9c92dc574fb2cc1542d0b470c, type: 3}
-      propertyPath: m_AssetId.i3
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 456063826, guid: 43ba7af9c92dc574fb2cc1542d0b470c, type: 3}
-      propertyPath: m_AssetId.i4
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 456063826, guid: 43ba7af9c92dc574fb2cc1542d0b470c, type: 3}
-      propertyPath: m_AssetId.i5
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 456063826, guid: 43ba7af9c92dc574fb2cc1542d0b470c, type: 3}
-      propertyPath: m_AssetId.i6
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 456063826, guid: 43ba7af9c92dc574fb2cc1542d0b470c, type: 3}
-      propertyPath: m_AssetId.i7
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 456063826, guid: 43ba7af9c92dc574fb2cc1542d0b470c, type: 3}
-      propertyPath: m_AssetId.i8
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 456063826, guid: 43ba7af9c92dc574fb2cc1542d0b470c, type: 3}
-      propertyPath: m_AssetId.i9
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 456063826, guid: 43ba7af9c92dc574fb2cc1542d0b470c, type: 3}
-      propertyPath: m_AssetId.i10
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 456063826, guid: 43ba7af9c92dc574fb2cc1542d0b470c, type: 3}
-      propertyPath: m_AssetId.i11
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 456063826, guid: 43ba7af9c92dc574fb2cc1542d0b470c, type: 3}
-      propertyPath: m_AssetId.i12
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 456063826, guid: 43ba7af9c92dc574fb2cc1542d0b470c, type: 3}
-      propertyPath: m_AssetId.i13
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 456063826, guid: 43ba7af9c92dc574fb2cc1542d0b470c, type: 3}
-      propertyPath: m_AssetId.i14
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 456063826, guid: 43ba7af9c92dc574fb2cc1542d0b470c, type: 3}
-      propertyPath: m_AssetId.i15
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 456063826, guid: 43ba7af9c92dc574fb2cc1542d0b470c, type: 3}
-      propertyPath: m_LocalPlayerAuthority
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []

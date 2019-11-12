@@ -20,6 +20,7 @@ public class PlayerControl :NetworkBehaviour
     public int prefabIndex;
     public int playerID { get; }//根据玩家的加入顺序,从0往后排
     public Transform cameraTarget;
+    bool isCursorLocked;
 
     public override void OnStartLocalPlayer()
     {
@@ -28,6 +29,7 @@ public class PlayerControl :NetworkBehaviour
        // muzzle = this.transform.Find("Muzzle");
        // InitTurret();
         Debug.Log("OnStartLocalPlayer");
+        CursorLock(true);
         FreeLookCam.gameObject.SetActive(true);
     }
     private void Start()
@@ -60,6 +62,11 @@ public class PlayerControl :NetworkBehaviour
         }
         */
 
+        if(Input.GetKeyDown(KeyCode.Escape))
+        {
+            CursorLock(!isCursorLocked);
+        }
+
         if (!isFiring && Input.GetKeyDown(KeyCode.Mouse0))
         {
             CmdFire();
@@ -72,6 +79,21 @@ public class PlayerControl :NetworkBehaviour
             CmdStopFire();
         }
 
+    }
+
+    void CursorLock(bool locked)
+    {
+        isCursorLocked = locked;
+        if (!locked)
+        {
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
+        }
+        else
+        {
+            Cursor.lockState = CursorLockMode.Locked;
+            Cursor.visible = false;
+        }
     }
 
     [Command]

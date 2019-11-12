@@ -6291,10 +6291,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   FreeLookCam: {fileID: 5993570270906326041}
-  shootButton: 0
-  playerCamera: {fileID: 0}
-  muzzle: {fileID: 2480571347549010506}
-  target: {fileID: 2480571345716675045}
   turrent: {fileID: 8811721978484189254}
   prefabIndex: 0
   cameraTarget: {fileID: 2480571345716675045}
@@ -6345,10 +6341,10 @@ MonoBehaviour:
   m_MaximumSteerAngle: 25
   m_SteerHelper: 0.644
   m_TractionControl: 1
-  m_FullTorqueOverAllWheels: 2500
+  m_FullTorqueOverAllWheels: 5000
   m_ReverseTorque: 500
   m_MaxHandbrakeTorque: 100000000
-  m_Downforce: 100
+  m_Downforce: 1000
   m_SpeedType: 0
   m_Topspeed: 150
   m_RevRangeBoundary: 1
@@ -6593,10 +6589,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2480571346933724984}
     m_Modifications:
-    - target: {fileID: 100000, guid: 51e32e37039064a4d94c609d80bb41c2, type: 3}
-      propertyPath: m_Name
-      value: car1
-      objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 51e32e37039064a4d94c609d80bb41c2, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.57
@@ -6653,6 +6645,10 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 0.016666673
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 51e32e37039064a4d94c609d80bb41c2, type: 3}
+      propertyPath: m_Name
+      value: car1
+      objectReference: {fileID: 0}
     - target: {fileID: 2300000, guid: 51e32e37039064a4d94c609d80bb41c2, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
@@ -6672,10 +6668,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2480571346333545303}
     m_Modifications:
-    - target: {fileID: 100002, guid: cde2c44a1479abf4eacabc3f64d63ac1, type: 3}
-      propertyPath: m_Name
-      value: you2
-      objectReference: {fileID: 0}
     - target: {fileID: 400002, guid: cde2c44a1479abf4eacabc3f64d63ac1, type: 3}
       propertyPath: m_LocalPosition.x
       value: -1.327968
@@ -6731,6 +6723,10 @@ PrefabInstance:
     - target: {fileID: 400002, guid: cde2c44a1479abf4eacabc3f64d63ac1, type: 3}
       propertyPath: m_LocalScale.z
       value: 0.016666701
+      objectReference: {fileID: 0}
+    - target: {fileID: 100002, guid: cde2c44a1479abf4eacabc3f64d63ac1, type: 3}
+      propertyPath: m_Name
+      value: you2
       objectReference: {fileID: 0}
     - target: {fileID: 2300000, guid: cde2c44a1479abf4eacabc3f64d63ac1, type: 3}
       propertyPath: m_Materials.Array.data[0]

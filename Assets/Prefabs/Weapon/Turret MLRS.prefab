@@ -435,9 +435,9 @@ MonoBehaviour:
   HeadingTrackingSpeed: 20
   ElevationTrackingSpeed: 20
   headingVetor: {x: 0, y: 0, z: 0}
-  HeadingLimit: {x: -60, y: 60}
+  HeadingLimit: {x: 0, y: 360}
   ElevationLimit: {x: -60, y: 60}
-  smoothControlling: 0
+  smoothControlling: 1
   DebugDraw: 0
   Animators: []
 --- !u!114 &2727663711536940611
