@@ -62,7 +62,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 48a79b01ea5641d4aa6daa2e23605641, type: 3}
   m_Name: Bloom
   m_EditorClassIdentifier: 
-  active: 1
+  active: 0
   enabled:
     overrideState: 1
     value: 1
@@ -156,7 +156,7 @@ MonoBehaviour:
     value: 0
   colorFilter:
     overrideState: 1
-    value: {r: 0.6737718, g: 0.69462657, b: 0.9716981, a: 1}
+    value: {r: 1, g: 0.8835707, b: 0.7764706, a: 1}
   hueShift:
     overrideState: 0
     value: 0
@@ -168,10 +168,10 @@ MonoBehaviour:
     value: 0
   postExposure:
     overrideState: 1
-    value: 0.1
+    value: 0.2
   contrast:
     overrideState: 1
-    value: 48
+    value: 80
   mixerRedOutRedIn:
     overrideState: 0
     value: 100
