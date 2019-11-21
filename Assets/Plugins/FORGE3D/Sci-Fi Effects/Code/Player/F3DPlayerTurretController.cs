@@ -80,13 +80,17 @@ namespace Forge3D
         {
             // Construct a ray pointing from screen mouse position into world space
             Vector3 mousePos=Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            turret.SetNewTarget(turret.Mount.transform.position * 2 - mousePos);
-           // Ray cameraRay = Camera.main.ScreenPointToRay(Input.mousePosition);
+           // turret.SetNewTarget(turret.Mount.transform.position * 2 - mousePos);
+            Ray cameraRay = Camera.main.ScreenPointToRay(Input.mousePosition);
             // Raycast
-           // if (Physics.Raycast(cameraRay, out hitInfo, 5000f))
-           // {
-           //     turret.SetNewTarget(hitInfo.point);
-           // }
+            if(Physics.Raycast(cameraRay,out hitInfo))//(cameraRay, out hitInfo, 5000f);
+            {
+                turret.SetNewTarget(hitInfo.point);
+            }
+            else
+            {
+                turret.SetNewTarget(mousePos + Camera.main.transform.forward * 5000);
+            }
         }
     }
 }

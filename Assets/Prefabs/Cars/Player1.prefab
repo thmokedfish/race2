@@ -7771,6 +7771,31 @@ PrefabInstance:
       propertyPath: m_Follow
       value: 
       objectReference: {fileID: 4182535406865066856}
+    - target: {fileID: 6212749985363246216, guid: 2c6e0a8be8df9984daeec2a58b1a19c3,
+        type: 3}
+      propertyPath: m_Orbits.Array.data[0].m_Height
+      value: 12.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6212749985363246216, guid: 2c6e0a8be8df9984daeec2a58b1a19c3,
+        type: 3}
+      propertyPath: m_Orbits.Array.data[0].m_Radius
+      value: 15.42
+      objectReference: {fileID: 0}
+    - target: {fileID: 6212749985363246216, guid: 2c6e0a8be8df9984daeec2a58b1a19c3,
+        type: 3}
+      propertyPath: m_Orbits.Array.data[1].m_Height
+      value: 7.92
+      objectReference: {fileID: 0}
+    - target: {fileID: 6212749985363246216, guid: 2c6e0a8be8df9984daeec2a58b1a19c3,
+        type: 3}
+      propertyPath: m_Orbits.Array.data[2].m_Height
+      value: 4.57
+      objectReference: {fileID: 0}
+    - target: {fileID: 6212749985363246216, guid: 2c6e0a8be8df9984daeec2a58b1a19c3,
+        type: 3}
+      propertyPath: m_Orbits.Array.data[1].m_Radius
+      value: 18.08
+      objectReference: {fileID: 0}
     - target: {fileID: 8846192925441971557, guid: 2c6e0a8be8df9984daeec2a58b1a19c3,
         type: 3}
       propertyPath: m_LocalPosition.x
