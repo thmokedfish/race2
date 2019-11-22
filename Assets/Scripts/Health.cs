@@ -5,7 +5,7 @@ using UnityEngine.UI;
 using UnityEngine.Networking;
 public class Health : NetworkBehaviour
 {
-    public int health;
+    [SyncVar]public int health;
     public int fullhealth;
     private Slider hpSlider;
 
@@ -34,6 +34,18 @@ public class Health : NetworkBehaviour
         {
             hpSlider.value = health / (float)fullhealth;
         }
-
+    }
+    public void TakeDamage(int damage)//only on server
+    {
+        if(!isServer)
+        { return; }
+        Debug.Log("take");
+        health -= damage;
+        if(health<=0)
+        { Die(); }
+    }
+    public void Die()
+    {
+        health = 0;
     }
 }

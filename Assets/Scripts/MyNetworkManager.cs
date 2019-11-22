@@ -40,11 +40,11 @@ public class MyNetworkManager : NetworkManager
         GameObject prefab;
         if(GameObject.FindObjectOfType<PlayerControl>())
         {
-            prefab = carPrefabs[1];
+            prefab = carPrefabs[0];
         }
         else
         {
-            prefab = carPrefabs[0];
+            prefab = carPrefabs[1];
         }
         if (prefab.GetComponent<NetworkIdentity>() == null)
         {
@@ -95,6 +95,6 @@ public class MyNetworkManager : NetworkManager
         }
         //localPlayer = car.GetComponent<PlayerControl>();
         */
-        ClientScene.AddPlayer(0);
+        ClientScene.AddPlayer(0);  //send message to call OnServalAddPlayer
     }
 }

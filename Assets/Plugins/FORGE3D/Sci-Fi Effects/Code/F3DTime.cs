@@ -10,7 +10,7 @@ namespace Forge3D
         public static F3DTime time;
 
         // Timer objects
-        List<Timer> timers;
+        List<Timer> timers = new List<Timer>();
         // Timer removal queue
         List<int> removalPending;
 
@@ -66,7 +66,6 @@ namespace Forge3D
         void Awake()
         {
             time = this;
-            timers = new List<Timer>();
             removalPending = new List<int>();
         }
 
