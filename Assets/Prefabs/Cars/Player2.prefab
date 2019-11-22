@@ -6294,7 +6294,9 @@ MonoBehaviour:
   FreeLookCam: {fileID: 5993570270906326041}
   turrent: {fileID: 8811721978484189254}
   prefabIndex: 0
+  playerID: 1
   cameraTarget: {fileID: 2480571345716675045}
+  coolDown: 0
 --- !u!114 &2480571347446951924
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7035,6 +7037,36 @@ PrefabInstance:
       propertyPath: m_Follow
       value: 
       objectReference: {fileID: 2480571347446951927}
+    - target: {fileID: 1330995667207997160, guid: 52a8404f52c81ef4692d78f832f42b68,
+        type: 3}
+      propertyPath: m_Orbits.Array.data[0].m_Height
+      value: 18.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1330995667207997160, guid: 52a8404f52c81ef4692d78f832f42b68,
+        type: 3}
+      propertyPath: m_Orbits.Array.data[0].m_Radius
+      value: 18.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1330995667207997160, guid: 52a8404f52c81ef4692d78f832f42b68,
+        type: 3}
+      propertyPath: m_Orbits.Array.data[1].m_Height
+      value: 7.92
+      objectReference: {fileID: 0}
+    - target: {fileID: 1330995667207997160, guid: 52a8404f52c81ef4692d78f832f42b68,
+        type: 3}
+      propertyPath: m_Orbits.Array.data[1].m_Radius
+      value: 21.9
+      objectReference: {fileID: 0}
+    - target: {fileID: 1330995667207997160, guid: 52a8404f52c81ef4692d78f832f42b68,
+        type: 3}
+      propertyPath: m_Orbits.Array.data[2].m_Height
+      value: 1.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 1330995667207997160, guid: 52a8404f52c81ef4692d78f832f42b68,
+        type: 3}
+      propertyPath: m_Orbits.Array.data[2].m_Radius
+      value: 22.4
+      objectReference: {fileID: 0}
     - target: {fileID: 4504522292141567749, guid: 52a8404f52c81ef4692d78f832f42b68,
         type: 3}
       propertyPath: m_LocalPosition.x

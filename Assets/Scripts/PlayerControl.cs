@@ -12,7 +12,7 @@ public class PlayerControl :NetworkBehaviour
     public Forge3D.F3DPlayerTurretController turrent;
     [Range(0,1)]
     public int prefabIndex;
-    public int playerID { get; }//根据玩家的加入顺序,从0往后排
+    public int playerID;//根据玩家的加入顺序,从0往后排
     public Transform cameraTarget;
     bool isCursorLocked;
     Crosshair crosshair;
@@ -35,8 +35,10 @@ public class PlayerControl :NetworkBehaviour
     {
         turrent.isLocal = isLocalPlayer;
     }
+    [Header("Fire")]
+    float timer;
 
-
+    public float coolDown;
     void Update()
     {
         if (!isLocalPlayer)
@@ -61,7 +63,12 @@ public class PlayerControl :NetworkBehaviour
         }
         crosshair.increase = isFiring;
 
+        if (timer < coolDown)
+        {
+            timer += Time.deltaTime;
+        }
     }
+
 
     void CursorLock(bool locked)
     {
@@ -82,14 +89,30 @@ public class PlayerControl :NetworkBehaviour
     void CmdFire()
     {
         //network identity "spawn"
-        Debug.Log("cmd fire");
         RpcFire();
+        Ray cameraRay = Camera.main.ScreenPointToRay(Input.mousePosition);
+        RaycastHit hit;
+        if(timer<coolDown)
+        { return; }
+        Debug.Log("ray");
+        timer = 0;
+        if(Physics.Raycast(cameraRay,out hit))
+        {
+            if(hit.transform.root.tag!="Player")
+            {
+                return;
+            }
+            Debug.Log("damage");
+            PlayerControl player = hit.transform.root.GetComponent<PlayerControl>();
+            if(player.playerID==this.playerID)
+            { return; }
+            player.GetComponent<Health>().TakeDamage(GameManager.instance.VulcanDamage);
+        }
     }
 
     [ClientRpc]
     void RpcFire()
     {
-        Debug.Log("rpc fire");
         turrent.fxController.Fire();
     }
 
