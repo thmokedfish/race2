@@ -35,10 +35,9 @@ public class PlayerControl :NetworkBehaviour
     {
         turrent.isLocal = isLocalPlayer;
     }
-    [Header("Fire")]
-    float timer;
+    float timer=0;
 
-    public float coolDown;
+    float coolDown=0.5f;
     void Update()
     {
         if (!isLocalPlayer)
@@ -54,6 +53,11 @@ public class PlayerControl :NetworkBehaviour
         {
             CmdFire();
             isFiring = true;
+        }
+        if(isFiring&&Input.GetKey(KeyCode.Mouse0))
+        {
+            Ray cameraRay = Camera.main.ScreenPointToRay(Input.mousePosition);
+            CmdDamage(cameraRay);
         }
 
         if (isFiring && Input.GetKeyUp(KeyCode.Mouse0))
@@ -84,30 +88,31 @@ public class PlayerControl :NetworkBehaviour
             Cursor.visible = false;
         }
     }
-
     [Command]
-    void CmdFire()
+    void CmdDamage(Ray cameraRay)
     {
-        //network identity "spawn"
-        RpcFire();
-        Ray cameraRay = Camera.main.ScreenPointToRay(Input.mousePosition);
         RaycastHit hit;
-        if(timer<coolDown)
+        if (timer < coolDown)
         { return; }
-        Debug.Log("ray");
         timer = 0;
-        if(Physics.Raycast(cameraRay,out hit))
+        if (Physics.Raycast(cameraRay, out hit))
         {
-            if(hit.transform.root.tag!="Player")
+            if (hit.transform.root.tag != "Player")
             {
                 return;
             }
             Debug.Log("damage");
             PlayerControl player = hit.transform.root.GetComponent<PlayerControl>();
-            if(player.playerID==this.playerID)
+            if (player.playerID == this.playerID)
             { return; }
             player.GetComponent<Health>().TakeDamage(GameManager.instance.VulcanDamage);
         }
+    }
+    [Command]
+    void CmdFire()
+    {
+        //network identity "spawn"
+        RpcFire();
     }
 
     [ClientRpc]

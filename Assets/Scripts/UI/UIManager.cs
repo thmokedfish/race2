@@ -11,6 +11,8 @@ public class UIManager : MonoBehaviour
     public GameObject crosshair;
     public Slider hpSlider;
     public Image timingImage;
+    public Text team1Score;
+    public Text team2Score;
     private void Awake()
     {
         Instance = this;
@@ -30,6 +32,11 @@ public class UIManager : MonoBehaviour
             winText.text = "Player" + index + " wins!";
         }
         winText.gameObject.SetActive(true);
+    }
+    public void setTeamScore(int team1,int team2)
+    {
+        team1Score.text = "队伍1" + team1.ToString();
+        team2Score.text = "队伍2" + team2.ToString();
     }
 
 }

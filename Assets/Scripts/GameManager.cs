@@ -12,6 +12,7 @@ public class GameManager:MonoBehaviour
     //public Camera playerCamera;
     public GameObject[] carPrefabs;
     public PlayerControl localPlayer;
+    public MyNetworkManager networkManager;
     public int VulcanDamage;
     private void Awake()
     {

@@ -130,4 +130,11 @@ public class ScoreManager : NetworkBehaviour
         }
         winText.gameObject.SetActive(true);
     }
+
+
+    [ClientRpc]
+    void RpcSetScoreText(int team1,int team2)
+    {
+        UIManager.Instance.setTeamScore(team1, team2);
+    }
 }

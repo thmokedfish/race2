@@ -6,6 +6,7 @@ using UnityEditor;
 public class MyNetworkManager : NetworkManager
 {
     public GameObject[] carPrefabs;
+    private GameObject prefabToSpawn;
     public override void OnClientConnect(NetworkConnection conn)
     {
         if (!clientLoadedScene)
@@ -37,16 +38,11 @@ public class MyNetworkManager : NetworkManager
 
         GameObject player;
         Transform startPos = GetStartPosition();
-        GameObject prefab;
-        if(GameObject.FindObjectOfType<PlayerControl>())
+        if(!prefabToSpawn)
         {
-            prefab = carPrefabs[0];
+            Debug.LogError("prefab to spawn is null");
         }
-        else
-        {
-            prefab = carPrefabs[1];
-        }
-        if (prefab.GetComponent<NetworkIdentity>() == null)
+        if (prefabToSpawn.GetComponent<NetworkIdentity>() == null)
         {
             if (LogFilter.logError) { Debug.LogError("The PlayerPrefab does not have a NetworkIdentity. Please add a NetworkIdentity to the player prefab."); }
             return;
@@ -54,11 +50,11 @@ public class MyNetworkManager : NetworkManager
 
         if (startPos != null)
         {
-            player = (GameObject)Instantiate(prefab, startPos.position, startPos.rotation);
+            player = (GameObject)Instantiate(prefabToSpawn, startPos.position, startPos.rotation);
         }
         else
         {
-            player = (GameObject)Instantiate(prefab, Vector3.zero, Quaternion.identity);
+            player = (GameObject)Instantiate(prefabToSpawn, Vector3.zero, Quaternion.identity);
         }
 
         NetworkServer.AddPlayerForConnection(conn, player, playerControllerId);
@@ -68,33 +64,37 @@ public class MyNetworkManager : NetworkManager
     {
         if(Input.GetKeyDown(KeyCode.I))  //模拟选择车型触发
         {
-            customAddplayer();
+            customAddplayer(carPrefabs[0]);
         }
     }
-    public void customAddplayer()
+    public void customAddplayer(GameObject player)
     {
 
-        GameObject car;
         int playerCount = GameObject.FindGameObjectsWithTag("Player").Length;
         Debug.Log("playerCount " + playerCount);
-        if (playerCount > 1)
-        {
-            return;
-        }
-        /*
-        if (playerCount == 1)
-        {
-           //playerPrefab = carPrefabs[1 - GameObject.FindObjectOfType<PlayerControl>().prefabIndex];
-            playerPrefab = carPrefabs[1];
-            //car = Instantiate(carPrefabs[1 - GameObject.FindObjectOfType<PlayerControl>().prefabIndex]);
-        }
-        else
-        {
-            playerPrefab = carPrefabs[0];
-            // car = Instantiate(carPrefabs[0]);
-        }
-        //localPlayer = car.GetComponent<PlayerControl>();
-        */
-        ClientScene.AddPlayer(0);  //send message to call OnServalAddPlayer
+        this.prefabToSpawn = player;
+        ClientScene.AddPlayer(0);  //send message to call OnServerAddPlayer
     }
+    public override void OnStopClient()
+    {
+        Debug.Log("on stop client");
+#if UNITY_EDITOR
+        UnityEditor.EditorApplication.isPlaying = false;
+#else
+        Application.Quit();
+#endif
+    }
+    public override void OnStartHost()
+    {
+        Debug.Log("on start host");
+    }
+    public override void OnStartServer()
+    {
+        Debug.Log("on start server");
+    }
+    public override void OnStartClient(NetworkClient client)
+    {
+        Debug.Log("on start client");
+    }
+
 }
