@@ -56,18 +56,19 @@ public class MyNetworkManager : NetworkManager
         {
             player = (GameObject)Instantiate(prefabToSpawn, Vector3.zero, Quaternion.identity);
         }
-
+        //为playerID与teamID赋值
+        //ScoreManager.Instance.添加分数
         NetworkServer.AddPlayerForConnection(conn, player, playerControllerId);
     }
 
     private void Update()
     {
-        if(Input.GetKeyDown(KeyCode.I))  //模拟选择车型触发
-        {
-            customAddplayer(carPrefabs[0]);
-        }
+        //if(Input.GetKeyDown(KeyCode.I))  //模拟选择车型触发
+        //{
+         //   customAddplayer(carPrefabs[0]);
+       // }
     }
-    public void customAddplayer(GameObject player)
+    public void customAddplayer(GameObject player,int teamID)
     {
 
         int playerCount = GameObject.FindGameObjectsWithTag("Player").Length;
@@ -75,9 +76,17 @@ public class MyNetworkManager : NetworkManager
         this.prefabToSpawn = player;
         ClientScene.AddPlayer(0);  //send message to call OnServerAddPlayer
     }
+
     public override void OnStopClient()
     {
+        //更新playerID,playerscores
         Debug.Log("on stop client");
+        if (GameManager.instance.localPlayer)
+        {
+            int teamid = GameManager.instance.localPlayer.teamID;
+            int playerid = GameManager.instance.localPlayer.playerID;
+            ScoreManager.Instance.RemovePlayer(teamid, playerid);
+        } 
 #if UNITY_EDITOR
         UnityEditor.EditorApplication.isPlaying = false;
 #else

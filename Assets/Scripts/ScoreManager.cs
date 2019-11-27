@@ -15,6 +15,10 @@ public class ScoreManager : NetworkBehaviour
     public int totalBallCount;
     public Button startButton;
     private Text winText;
+    private int team0Score;
+    private int team1Score;
+    private SyncListInt team0PlayerScores;
+    private SyncListInt team1PlayerScores;
     void Awake()
     {
         Instance = this;
@@ -32,19 +36,20 @@ public class ScoreManager : NetworkBehaviour
     }
     public override void OnStartServer()
     {
-        Debug.Log("score manager startserver");
         startButton=Instantiate(this.startButton, UIManager.Instance.transform);
         startButton.onClick.AddListener(StartGame);
         nextBallScore = 1;
     }
+
     private void Start()
     {
         timingImage = UIManager.Instance.timingImage;
         winText = UIManager.Instance.winText;
     }
-    public void GetBall(int playerID)
+
+    public void GetBall(int teamID,int playerID)
     {
-        GetPoint(playerID, nextBallScore);
+        //GetPoint(playerID, nextBallScore);
         totalBallCount--;
         if (totalBallCount <= 0)
         {
@@ -68,10 +73,23 @@ public class ScoreManager : NetworkBehaviour
             RpcStartTiming();
         }
     }
-    public void GetPoint(int playerID,int score)
+    public void GetPoint(int teamID,int playerID,int score)
     {
-        playerScore[playerID] +=score;
+        if(teamID==0)
+        {
+            team0PlayerScores[playerID] += score;
+        }
         RefreshScoreText(playerID);
+    }
+
+    public void RemovePlayer(int teamID,int playerID)
+    {
+        //remove player from list and refresh score text
+        if(teamID==0)
+        {
+            team1PlayerScores.RemoveAt(playerID);/////
+            
+        }
     }
     public void RefreshScoreText(int playerID)
     {
@@ -131,6 +149,18 @@ public class ScoreManager : NetworkBehaviour
         winText.gameObject.SetActive(true);
     }
 
+    public int GetTeamScore(int teamIndex)
+    {
+        if(teamIndex==0)
+        {
+            return team0Score;
+        }
+        if(teamIndex==1)
+        {
+            return team1Score;
+        }
+        return -1;
+    }
 
     [ClientRpc]
     void RpcSetScoreText(int team1,int team2)

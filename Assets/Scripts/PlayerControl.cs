@@ -12,7 +12,12 @@ public class PlayerControl :NetworkBehaviour
     public Forge3D.F3DPlayerTurretController turrent;
     [Range(0,1)]
     public int prefabIndex;
-    public int playerID;//根据玩家的加入顺序,从0往后排
+    [SyncVar]
+    public int playerID;//在队伍中的ID,0 or 1
+    [SyncVar]
+    public int score;
+    [SyncVar]
+    public int teamID;//0 or 1
     public Transform cameraTarget;
     bool isCursorLocked;
     Crosshair crosshair;
@@ -22,8 +27,8 @@ public class PlayerControl :NetworkBehaviour
     }
     public override void OnStartLocalPlayer()
     {
-
         Debug.Log("OnStartLocalPlayer");
+        GameManager.instance.localPlayer = this;
         CursorLock(true);
         FreeLookCam.gameObject.SetActive(true);
     }
