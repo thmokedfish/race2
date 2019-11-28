@@ -78,10 +78,11 @@ namespace Forge3D
         */
         void CheckForTurn()
         {
+            Vector3 screenCenter = new Vector3(Screen.width / 2, Screen.height / 2);
             // Construct a ray pointing from screen mouse position into world space
-            Vector3 mousePos=Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            Vector3 centerPos=Camera.main.ScreenToWorldPoint(screenCenter);
            // turret.SetNewTarget(turret.Mount.transform.position * 2 - mousePos);
-            Ray cameraRay = Camera.main.ScreenPointToRay(Input.mousePosition);
+            Ray cameraRay = Camera.main.ScreenPointToRay(screenCenter);
             // Raycast
             if(Physics.Raycast(cameraRay,out hitInfo))//(cameraRay, out hitInfo, 5000f);
             {
@@ -89,7 +90,7 @@ namespace Forge3D
             }
             else
             {
-                turret.SetNewTarget(mousePos + Camera.main.transform.forward * 5000);
+                turret.SetNewTarget(centerPos + Camera.main.transform.forward * 5000);
             }
         }
     }

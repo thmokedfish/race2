@@ -631,10 +631,10 @@ PlayerSettings:
   facebookXfbml: 0
   facebookFrictionlessRequests: 1
   apiCompatibilityLevel: 6
-  cloudProjectId: 9b0768bf-8f85-4de0-8b0e-c5d6783c15a8
+  cloudProjectId: 
   framebufferDepthMemorylessMode: 0
-  projectName: desertRace
-  organizationId: thmokedfish
+  projectName: 
+  organizationId: 
   cloudEnabled: 0
   enableNativePlatformBackendsForNewInputSystem: 0
   disableOldInputManagerSupport: 0

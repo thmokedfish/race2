@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 public class SpawnButton : MonoBehaviour
 {
-    public GameObject carPrefab;
+    public int prefabID;
     public int teamID;
     private void Awake()
     {
@@ -12,6 +12,8 @@ public class SpawnButton : MonoBehaviour
     }
     void SpawnButton_OnClick()
     {
-        GameManager.instance.networkManager.customAddplayer(carPrefab,teamID);
+        ScoreManager.Instance.nextPrefabID = prefabID;
+        ScoreManager.Instance.nextTeamID = teamID;
+        GameManager.instance.networkManager.customAddplayer();
     }
 }
