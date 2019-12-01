@@ -61,7 +61,7 @@ public class PlayerControl :NetworkBehaviour
         }
         if(isFiring&&Input.GetKey(KeyCode.Mouse0))
         {
-            Ray cameraRay = Camera.main.ScreenPointToRay(Input.mousePosition);
+            Ray cameraRay = Camera.main.ScreenPointToRay(new Vector3(Screen.width/2,Screen.height/2));
             CmdDamage(cameraRay);
         }
 
@@ -108,16 +108,17 @@ public class PlayerControl :NetworkBehaviour
                 return;
             }
             Debug.Log("damage");
-            PlayerControl player = hit.transform.root.GetComponent<PlayerControl>();
-            if (player.playerID == this.playerID)
+            PlayerControl target = hit.transform.root.GetComponent<PlayerControl>();
+            if (target.teamID== this.teamID)
             { return; }
-            player.GetComponent<Health>().TakeDamage(GameManager.instance.VulcanDamage);
+            target.GetComponent<Health>().TakeDamage(GameManager.instance.VulcanDamage);
         }
     }
     [Command]
     void CmdFire()
     {
         //network identity "spawn"
+        Debug.Log("cmdfire");
         RpcFire();
     }
 

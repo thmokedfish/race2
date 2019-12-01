@@ -15,8 +15,8 @@ public class ScoreManager : NetworkBehaviour
     public Button startButton;
     private Text winText;
     public Team[] team = new Team[2];
-    [SyncVar]public int nextPrefabID;
-    [SyncVar]public int nextTeamID;
+    //[SyncVar]public int nextPrefabID;
+    //[SyncVar]public int nextTeamID;
     void Awake()
     {
         Instance = this;

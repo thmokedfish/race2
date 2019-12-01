@@ -5570,6 +5570,9 @@ MonoBehaviour:
   FreeLookCam: {fileID: 6226322992128648312}
   turrent: {fileID: 9154870065250111527}
   prefabIndex: 0
+  playerID: 0
+  score: 0
+  teamID: 0
   cameraTarget: {fileID: 2822039379452557700}
 --- !u!114 &2822039380410767253
 MonoBehaviour:
@@ -5696,7 +5699,7 @@ MonoBehaviour:
     i14: 0
     i15: 0
   m_ServerOnly: 0
-  m_LocalPlayerAuthority: 0
+  m_LocalPlayerAuthority: 1
 --- !u!114 &3161092615030243221
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -24,6 +24,7 @@ public class GameManager:MonoBehaviour
         team[0] = TeamManager.GetChild(0).GetComponent<Team>();
         team[1] = TeamManager.GetChild(1).GetComponent<Team>();
     }
+
     /*
     public override void OnStartClient()
     {

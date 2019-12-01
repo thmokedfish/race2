@@ -12,8 +12,6 @@ public class SpawnButton : MonoBehaviour
     }
     void SpawnButton_OnClick()
     {
-        ScoreManager.Instance.nextPrefabID = prefabID;
-        ScoreManager.Instance.nextTeamID = teamID;
-        GameManager.instance.networkManager.customAddplayer();
+        GameManager.instance.networkManager.customAddplayer(prefabID,teamID);
     }
 }
