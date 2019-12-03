@@ -8,7 +8,7 @@ public class GameManager:MonoBehaviour
 
    // public SyncListBool isAvailable;      //几种车型是否可选
     //private bool[] IsAvailable;
-    public static GameManager instance;
+    public static GameManager Instance;
     //public Camera playerCamera;
     public GameObject[] carPrefabs;
     public PlayerControl localPlayer;
@@ -17,7 +17,7 @@ public class GameManager:MonoBehaviour
     public int VulcanDamage;
     private void Awake()
     {
-        instance = this;
+        Instance = this;
         Camera.main.gameObject.AddComponent(typeof(CinemachineBrain));
         networkManager = GameObject.Find("NetworkManager").GetComponent<MyNetworkManager>();
         Transform TeamManager = GameObject.Find("Scripts/TeamManager").transform;

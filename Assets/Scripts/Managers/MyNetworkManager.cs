@@ -130,12 +130,11 @@ public class MyNetworkManager : NetworkManager
     {
         //更新playerID,playerscores
         Debug.Log("on stop client"); //call on client
-        if (GameManager.instance.localPlayer)
+        if (GameManager.Instance.localPlayer)
         {
-            int teamid = GameManager.instance.localPlayer.teamID;
-            int playerid = GameManager.instance.localPlayer.playerID;
+            int teamid = GameManager.Instance.localPlayer.teamID;
+            int playerid = GameManager.Instance.localPlayer.playerID;
             ScoreManager.Instance.RemovePlayer(teamid, playerid);
-            GameManager.instance.team[teamid].RemovePlayer(playerid);
         } 
 #if UNITY_EDITOR
         UnityEditor.EditorApplication.isPlaying = false;

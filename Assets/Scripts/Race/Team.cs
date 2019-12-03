@@ -19,9 +19,13 @@ public class Team :NetworkBehaviour
             Debug.LogError("playerID out of index");
             return;
         }
-        player[0] = player[1 - playerID];
+        player[0] = player[1];
         player[1] = null;
-        player[0].playerID = 0;
+        if (player[0])
+        {
+            player[0].playerID = 0;
+        }
+        playerCount--;
     }
 
     public void AddPlayer(PlayerControl newplayer)

@@ -27,14 +27,15 @@ public class PlayerControl :NetworkBehaviour
     }
     public override void OnStartLocalPlayer()
     {
-        GameManager.instance.localPlayer = this;
+        GameManager.Instance.localPlayer = this;
         CursorLock(true);
         FreeLookCam.gameObject.SetActive(true);
     }
-    private void Start()
+    private void Start()  //不区分是否是localPlayer的部分
     {
         InitTurret();
-        GameManager.instance.team[teamID].AddPlayer(this);
+        GameManager.Instance.team[teamID].AddPlayer(this);
+        UIManager.Instance.setTeamScoreUI(teamID);
     }
     void InitTurret()
     {
@@ -52,6 +53,11 @@ public class PlayerControl :NetworkBehaviour
         if(Input.GetKeyDown(KeyCode.Escape))
         {
             CursorLock(!isCursorLocked);
+        }
+
+        if(Input.GetMouseButtonDown(0))
+        {
+            CursorLock(true);
         }
 
         if (!isFiring && Input.GetKeyDown(KeyCode.Mouse0))
@@ -111,7 +117,7 @@ public class PlayerControl :NetworkBehaviour
             PlayerControl target = hit.transform.root.GetComponent<PlayerControl>();
             if (target.teamID== this.teamID)
             { return; }
-            target.GetComponent<Health>().TakeDamage(GameManager.instance.VulcanDamage);
+            target.GetComponent<Health>().TakeDamage(GameManager.Instance.VulcanDamage);
         }
     }
     [Command]

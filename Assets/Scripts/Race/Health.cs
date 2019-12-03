@@ -43,11 +43,11 @@ public class Health : NetworkBehaviour
     }
     void OnHealthChanged(int health) //SHOULD be called from both
     {
-        this.health = health;
+        //this.health = health;
         Debug.Log("health changed");
         if(!isLocalPlayer)
         { return; }
-        if(health<=0)
+        if(this.health<=0)
         {
             Brightness brightness=Camera.main.GetComponent<Brightness>();
             brightness.saturation = 0;

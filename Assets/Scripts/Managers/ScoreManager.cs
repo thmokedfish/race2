@@ -39,13 +39,14 @@ public class ScoreManager : NetworkBehaviour
         nextBallScore = 1;
     }
 
-    private void Start()
+    public override void OnStartClient()
     {
         timingImage = UIManager.Instance.timingImage;
         winText = UIManager.Instance.winText;
-        team = GameManager.instance.team;
+        team = GameManager.Instance.team;
+        UIManager.Instance.setTeamScoreUI(team[0]);
+        UIManager.Instance.setTeamScoreUI(team[1]);
     }
-
 
     public void GetBall(int teamID,int playerID)
     {
@@ -137,8 +138,8 @@ public class ScoreManager : NetworkBehaviour
     }
 
     [ClientRpc]
-    void RpcSetScoreText(int team1,int team2)
+    void RpcSetScoreText(int teamID,int score)
     {
-        UIManager.Instance.setTeamScore(team1, team2);
+        UIManager.Instance.setTeamScoreUI(team[teamID]);
     }
 }
