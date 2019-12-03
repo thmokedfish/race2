@@ -37,10 +37,13 @@ namespace Forge3D
         private bool fullAccess = false; 
         public Animator[] Animators;
 
+        private F3DPlayerTurretController f3dPlayerController;
+
         void Awake()
         {
             headTransform = Swivel.GetComponent<Transform>();
             barrelTransform = Mount.GetComponent<Transform>();
+            f3dPlayerController = this.GetComponent<F3DPlayerTurretController>();
         }
 
         public void PlayAnimation()
@@ -86,6 +89,10 @@ namespace Forge3D
          
         void Update()
         { 
+            if(!f3dPlayerController.isLocal)
+            {
+                return;
+            }
             if (!smoothControlling)
             {
                 if (barrelTransform != null)

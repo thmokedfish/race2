@@ -6202,8 +6202,9 @@ MonoBehaviour:
   turrent: {fileID: 8811721978484189254}
   prefabIndex: 0
   playerID: 1
+  score: 0
+  teamID: 0
   cameraTarget: {fileID: 2480571345716675045}
-  coolDown: 0
 --- !u!114 &2480571347446951924
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6329,7 +6330,7 @@ MonoBehaviour:
     i14: 0
     i15: 0
   m_ServerOnly: 0
-  m_LocalPlayerAuthority: 0
+  m_LocalPlayerAuthority: 1
 --- !u!114 &3358369610794960884
 MonoBehaviour:
   m_ObjectHideFlags: 0

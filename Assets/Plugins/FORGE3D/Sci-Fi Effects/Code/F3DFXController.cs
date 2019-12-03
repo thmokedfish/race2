@@ -108,7 +108,7 @@ namespace Forge3D
                 ShellParticles[i].gameObject.SetActive(true);
             }*/
         }
-
+        /*
         // Display GUI
         void OnGUI()
         {
@@ -162,6 +162,7 @@ namespace Forge3D
 
             GUILayout.EndArea();
         }
+        */
 
         void Update()
         {

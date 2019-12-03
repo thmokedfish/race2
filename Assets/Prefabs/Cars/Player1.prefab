@@ -933,7 +933,7 @@ GameObject:
   - component: {fileID: 4182535406853833346}
   - component: {fileID: 5823936707858277404}
   - component: {fileID: 4200923521226056328}
-  - component: {fileID: 2156478141620834640}
+  - component: {fileID: 360346905382496587}
   m_Layer: 0
   m_Name: Player1
   m_TagString: Player
@@ -997,8 +997,10 @@ MonoBehaviour:
   FreeLookCam: {fileID: 5761790183437542647}
   turrent: {fileID: 965164430163756681}
   prefabIndex: 0
+  playerID: 0
+  score: 0
+  teamID: 0
   cameraTarget: {fileID: 615978386723286448}
-  coolDown: 0
 --- !u!114 &4182535406864578327
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1046,15 +1048,15 @@ MonoBehaviour:
   m_MaximumSteerAngle: 25
   m_SteerHelper: 0.644
   m_TractionControl: 1
-  m_FullTorqueOverAllWheels: 5000
+  m_FullTorqueOverAllWheels: 2500
   m_ReverseTorque: 500
   m_MaxHandbrakeTorque: 100000000
-  m_Downforce: 1000
+  m_Downforce: 200
   m_SpeedType: 0
-  m_Topspeed: 150
+  m_Topspeed: 182.5
   m_RevRangeBoundary: 1
   m_SlipLimit: 0.3
-  m_BrakeTorque: 20000
+  m_BrakeTorque: 120000
 --- !u!114 &4759934590928883160
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1124,7 +1126,7 @@ MonoBehaviour:
     i14: 0
     i15: 0
   m_ServerOnly: 0
-  m_LocalPlayerAuthority: 0
+  m_LocalPlayerAuthority: 1
 --- !u!114 &4200923521226056328
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1147,7 +1149,7 @@ MonoBehaviour:
   m_SnapThreshold: 5
   m_InterpolateRotation: 1
   m_InterpolateMovement: 1
---- !u!114 &2156478141620834640
+--- !u!114 &360346905382496587
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1159,9 +1161,9 @@ MonoBehaviour:
   m_Script: {fileID: -1267208747, guid: dc443db3e92b4983b9738c1131f555cb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Target: {fileID: 965164430163756680}
+  m_Target: {fileID: 965164431440910369}
   m_ChildIndex: 0
-  m_SendInterval: 0.1
+  m_SendInterval: 0.033333335
   m_SyncRotationAxis: 7
   m_RotationSyncCompression: 0
   m_MovementThreshold: 0.001
@@ -7904,6 +7906,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 43ba7af9c92dc574fb2cc1542d0b470c, type: 3}
+--- !u!4 &965164430163756680 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2727663711536940610, guid: 43ba7af9c92dc574fb2cc1542d0b470c,
+    type: 3}
+  m_PrefabInstance: {fileID: 2935898760584282314}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &965164430163756681 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 2727663711536940611, guid: 43ba7af9c92dc574fb2cc1542d0b470c,
@@ -7916,9 +7924,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e786282beff59ac4ebf7d6bfa6013094, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!4 &965164430163756680 stripped
+--- !u!4 &965164431440910369 stripped
 Transform:
-  m_CorrespondingSourceObject: {fileID: 2727663711536940610, guid: 43ba7af9c92dc574fb2cc1542d0b470c,
+  m_CorrespondingSourceObject: {fileID: 2727663712809933035, guid: 43ba7af9c92dc574fb2cc1542d0b470c,
     type: 3}
   m_PrefabInstance: {fileID: 2935898760584282314}
   m_PrefabAsset: {fileID: 0}
