@@ -13,7 +13,7 @@ public class GameManager:MonoBehaviour
     public GameObject[] carPrefabs;
     public PlayerControl localPlayer;
     [HideInInspector]public MyNetworkManager networkManager;
-    public Team[] team = new Team[2];
+    [HideInInspector]public Team[] team = new Team[2];
     public int VulcanDamage;
     private void Awake()
     {
