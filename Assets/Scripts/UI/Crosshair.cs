@@ -10,8 +10,8 @@ public class Crosshair : MonoBehaviour
     public RawImage left;
     public RawImage right;
     public float MaxDistance;
-    public float curDistance;
-    public bool increase;
+    private float curDistance;
+    [HideInInspector]public bool increase;
     public float intense = 10;
     private void Update()
     {

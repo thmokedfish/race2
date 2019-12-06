@@ -6,6 +6,7 @@ using UnityEngine.Networking;
 public class ScoreManager : NetworkBehaviour
 {
     public static ScoreManager Instance { get; private set; }
+    public GameObject boxPrefab;
     private int nextBallScore;
     private List<Text> scoreText = new List<Text>();      //每当有玩家连接，add++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
     private Image timingImage;
@@ -50,7 +51,7 @@ public class ScoreManager : NetworkBehaviour
 
     public void GetBall(int teamID,int playerID)
     {
-        //GetPoint(playerID, nextBallScore);
+        GetPoint(teamID,playerID, nextBallScore);
         totalBallCount--;
         if (totalBallCount <= 0)
         {
@@ -62,6 +63,7 @@ public class ScoreManager : NetworkBehaviour
             //StartCoroutine(StartTiming());
             RpcStartTiming();
         }
+        RpcSetScoreText(teamID);
     }
     public void GetPoint(int teamID,int playerID,int score)
     {
@@ -106,17 +108,19 @@ public class ScoreManager : NetworkBehaviour
     }
     void ServerCreateBall()
     {
-        Vector3 ballPosition = new Vector3((Random.value*2 -1) * radius+this.transform.position.x, 25, (Random.value * 2 - 1) * radius+this.transform.position.z);
+        //radius 128
+        Vector3 ballPosition = new Vector3((Random.value*2 -1) * radius+this.transform.position.x, 100, (Random.value * 2 - 1) * radius+this.transform.position.z);
         RaycastHit hit;
         if (Physics.Raycast(ballPosition, Vector3.down, out hit))
         {
             if (hit.transform.tag == "Ground")
             {
-                ballPosition = hit.point + new Vector3(0, 1.5f, 0);
+                ballPosition = hit.point + new Vector3(0, 0.7f, 0);
             }
         }
-        GameObject ball = Instantiate(Resources.Load<GameObject>("PointBall"),ballPosition,new Quaternion ());
-        NetworkServer.Spawn(ball);//spawn ball for clients
+        //GameObject ball = Instantiate(Resources.Load<GameObject>("PointBall"),ballPosition,new Quaternion ());
+        GameObject box = Instantiate(boxPrefab, ballPosition, new Quaternion());
+        NetworkServer.Spawn(box);//spawn ball for clients
         //ball.GetComponent<PointBall>().ballTrigged.AddListener();
     }
     public void SetWinner(int index)
@@ -138,7 +142,7 @@ public class ScoreManager : NetworkBehaviour
     }
 
     [ClientRpc]
-    void RpcSetScoreText(int teamID,int score)
+    void RpcSetScoreText(int teamID)
     {
         UIManager.Instance.setTeamScoreUI(team[teamID]);
     }

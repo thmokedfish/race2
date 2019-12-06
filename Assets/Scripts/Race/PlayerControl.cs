@@ -50,40 +50,15 @@ public class PlayerControl :NetworkBehaviour
         {
             return;
         }
-        if(Input.GetKeyDown(KeyCode.Escape))
-        {
-            CursorLock(!isCursorLocked);
-        }
-
-        if(Input.GetMouseButtonDown(0))
-        {
-            CursorLock(true);
-        }
+        CheckInputForCursorLock();
 
         if (!isFiring && Input.GetKeyDown(KeyCode.Mouse0))
         {
             CmdFire();
             isFiring = true;
         }
-        if(isFiring&&Input.GetKey(KeyCode.Mouse0))
-        {
-            if (timer < coolDown)
-            { return; }
-            timer = 0;
-            Ray cameraRay = Camera.main.ScreenPointToRay(new Vector3(Screen.width / 2, Screen.height / 2));
-            RaycastHit hit;
-            if (Physics.Raycast(cameraRay, out hit))
-            {
-                if (hit.transform.root.tag != "Player")
-                {
-                    return;
-                }
-                PlayerControl target = hit.transform.root.GetComponent<PlayerControl>();
-                if (target.teamID == this.teamID)
-                { return; }
-                CmdDamage(target.gameObject);
-            }
-        }
+
+        CheckOutDamageOnline();
 
         if (isFiring && Input.GetKeyUp(KeyCode.Mouse0))
         {
@@ -98,6 +73,43 @@ public class PlayerControl :NetworkBehaviour
         }
     }
 
+    void CheckInputForCursorLock()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            CursorLock(!isCursorLocked);
+        }
+
+        if (Input.GetMouseButtonDown(1))
+        {
+            CursorLock(true);
+        }
+
+    }
+
+    void CheckOutDamageOnline()
+    {
+        if (isFiring && Input.GetKey(KeyCode.Mouse0))
+        {
+            if (timer < coolDown)
+            {
+                return;
+            }
+            timer = 0;
+            Ray cameraRay = Camera.main.ScreenPointToRay(new Vector3(Screen.width / 2, Screen.height / 2));
+            RaycastHit hit;
+            if (Physics.Raycast(cameraRay, out hit))
+            {
+                if (hit.transform.root.tag != "Player")
+                { return; }
+
+                PlayerControl target = hit.transform.root.GetComponent<PlayerControl>();
+                if (target.teamID == this.teamID)
+                { return; }
+                CmdDamage(target.gameObject);
+            }
+        }
+    }
 
     void CursorLock(bool locked)
     {
