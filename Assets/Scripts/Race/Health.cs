@@ -5,7 +5,7 @@ using UnityEngine.UI;
 using UnityEngine.Networking;
 public class Health : NetworkBehaviour
 {
-    [SyncVar(hook ="OnHealthChanged")]public int health;
+    public int health;
     public int fullhealth;
     private Slider hpSlider;
 
@@ -40,17 +40,25 @@ public class Health : NetworkBehaviour
         health -= damage;
         if (health < 0)
             health = 0;
+        RpcSetHealth(health);
     }
+    [ClientRpc]
+    private void RpcSetHealth(int health)
+    {
+        this.health = health;
+        OnHealthChanged(health);
+    }
+
     void OnHealthChanged(int health) //SHOULD be called from both
     {
-        //this.health = health;
-        Debug.Log("health changed");
+        Debug.Log("health changed"+health);
         if(!isLocalPlayer)
         { return; }
-        if(this.health<=0)
+        if(health<=0)
         {
             Brightness brightness=Camera.main.GetComponent<Brightness>();
             brightness.saturation = 0;
         }
     }
+    
 }

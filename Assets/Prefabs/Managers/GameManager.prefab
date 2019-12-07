@@ -48,4 +48,7 @@ MonoBehaviour:
   - {fileID: 2480571347446951912, guid: f3acf1eb0866aff4884b5255d147ae9f, type: 3}
   localPlayer: {fileID: 0}
   networkManager: {fileID: 0}
+  team:
+  - {fileID: 0}
+  - {fileID: 0}
   VulcanDamage: 5

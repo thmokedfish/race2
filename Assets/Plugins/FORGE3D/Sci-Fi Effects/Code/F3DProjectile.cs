@@ -91,7 +91,7 @@ namespace Forge3D
                     {
                         case F3DFXType.Vulcan:
                             F3DFXController.instance.VulcanImpact(hitPoint.point + hitPoint.normal*fxOffset);
-                            ApplyForce(2.5f);
+                            //ApplyForce(2.5f);
                             break;
 
                         case F3DFXType.SoloGun:

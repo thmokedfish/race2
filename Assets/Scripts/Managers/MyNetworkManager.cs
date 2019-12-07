@@ -6,8 +6,7 @@ using UnityEditor;
 public class MyNetworkManager : NetworkManager
 {
     public GameObject[] carPrefabs;
-    public int nextPrefabID;
-    public int nextTeamID;
+    public Transform[] StartPositions;
     public NetworkConnection myConn;
     public class CustomMessage :MessageBase
     {
@@ -48,7 +47,7 @@ public class MyNetworkManager : NetworkManager
         CustomMessage message = extraMessageReader.ReadMessage<CustomMessage>();
 
         GameObject player;
-        Transform startPos = GetStartPosition();
+        //Transform startPos = GetStartPosition();
         GameObject prefabToSpawn = carPrefabs[message.prefabID];
 
         if (!prefabToSpawn)
@@ -60,20 +59,31 @@ public class MyNetworkManager : NetworkManager
             if (LogFilter.logError) { Debug.LogError("The PlayerPrefab does not have a NetworkIdentity. Please add a NetworkIdentity to the player prefab."); }
             return;
         }
-
+        Transform startPos;
+        if(StartPositions.Length<2)
+        {
+            startPos = null;
+        }
+        else
+        {
+            startPos = StartPositions[message.teamID];
+        }
         if (startPos != null)
+
         {
             player = (GameObject)Instantiate(prefabToSpawn, startPos.position, startPos.rotation);
         }
         else
         {
-            player = (GameObject)Instantiate(prefabToSpawn, Vector3.zero, Quaternion.identity);
+            Debug.LogError("startPositions[] loss");
+            player = (GameObject)Instantiate(prefabToSpawn,Vector3.zero,new Quaternion());
         }
         player.GetComponent<PlayerControl>().teamID = message.teamID;
         //ScoreManager.Instance.添加分数
         NetworkServer.AddPlayerForConnection(conn, player, playerControllerId);
         //maybe call rpc team.addplayer here? Try call it on player if not work
     }
+    /*
     public override void OnServerAddPlayer(NetworkConnection conn, short playerControllerId)
     {
         if (carPrefabs.Length==0)
@@ -113,7 +123,7 @@ public class MyNetworkManager : NetworkManager
         //ScoreManager.Instance.添加分数
         NetworkServer.AddPlayerForConnection(conn, player, playerControllerId);
         //maybe call rpc team.addplayer here? Try call it on player if not work
-    }
+    }*/
 
 
     public void customAddplayer(int prefabID,int teamID)

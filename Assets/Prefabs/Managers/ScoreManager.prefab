@@ -44,10 +44,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 278f953b808767647bf74152273efdd5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  radius: 128
+  boxPrefab: {fileID: 7472781757345335839, guid: 9836d9066ef5bf04f9a4952cfaa599b6,
+    type: 3}
+  radius: 0
   totalBallCount: 5
   startButton: {fileID: 6946588656670237871, guid: 6d9b3833acffbc24da435897f941ea84,
     type: 3}
+  team:
+  - {fileID: 0}
+  - {fileID: 0}
 --- !u!114 &8128151471991203346
 MonoBehaviour:
   m_ObjectHideFlags: 0
