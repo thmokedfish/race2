@@ -21,7 +21,7 @@ CGINCLUDE
 	uniform float4 _MainTex_TexelSize;
 
 	struct v2f {
-		float4 pos : SV_POSITION;
+		float4 pos : POSITION;
 		float2 uv : TEXCOORD0;
 	};
 	
@@ -288,15 +288,15 @@ CGINCLUDE
 		return o;
 	}
 
-	half4 fragFirst (v2f i) : SV_Target {		 	 	    
+	half4 fragFirst (v2f i) : COLOR {		 	 	    
 		return highPassPre (i.uv);
 	}
 	
-	half4 fragSecond (v2f i) : SV_Target {		 	 	    
+	half4 fragSecond (v2f i) : COLOR {		 	 	    
 	    return edgeDetectAndBlur( i.uv );
 	}
 
-	half4 fragThird (v2f i) : SV_Target {		 	 	    
+	half4 fragThird (v2f i) : COLOR {		 	 	    
 	    return edgeDetectAndBlurSharper( i.uv );
 	}
 			
@@ -312,8 +312,6 @@ SubShader {
 		#pragma vertex vert
 		#pragma fragment fragFirst
 		//#pragma fragmentoption ARB_precision_hint_fastest 
-        #pragma exclude_renderers d3d11_9x
-        #pragma glsl
 		
 		ENDCG
 	}
@@ -328,8 +326,6 @@ SubShader {
 		#pragma fragment fragSecond
 		//#pragma fragmentoption ARB_precision_hint_fastest 
 		#pragma target 3.0
-        #pragma exclude_renderers d3d11_9x
-        #pragma glsl
 		
 		ENDCG
 	}
@@ -344,8 +340,6 @@ SubShader {
 		#pragma fragment fragThird
 		//#pragma fragmentoption ARB_precision_hint_fastest 
 		#pragma target 3.0
-        #pragma exclude_renderers d3d11_9x
-        #pragma glsl
 		
 		ENDCG
 	}	

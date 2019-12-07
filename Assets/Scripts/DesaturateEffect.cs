@@ -14,6 +14,6 @@ public class DesaturateEffect : ImageEffectBase {
 		material.SetTexture("_RampTex", textureRamp);
 		material.SetFloat("_Desat", desaturateAmount);
 		material.SetVector("_RampOffset", new Vector4 (rampOffsetR, rampOffsetG, rampOffsetB, 0));
-		Graphics.Blit(source, destination, material);
+		ImageEffects.BlitWithMaterial(material, source, destination);
 	}
 }
