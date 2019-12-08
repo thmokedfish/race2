@@ -13,6 +13,14 @@ public class Crosshair : MonoBehaviour
     private float curDistance;
     [HideInInspector]public bool increase;
     public float intense = 10;
+    private void Start()
+    {
+        center.texture = Resources.Load<Texture>("FrontSight/Center"); 
+        top.texture = Resources.Load<Texture>("FrontSight/Top");
+        bottom .texture= Resources.Load<Texture>("FrontSight/Bottom");
+        left.texture = Resources.Load<Texture>("FrontSight/Left");
+        right.texture = Resources.Load<Texture>("FrontSight/Right");
+    }
     private void Update()
     {
         curDistance = Mathf.Lerp(curDistance, increase ? MaxDistance : 0, intense*Time.deltaTime);

@@ -6,8 +6,13 @@ using UnityEditor;
 public class MyNetworkManager : NetworkManager
 {
     public GameObject[] carPrefabs;
-    public Transform[] StartPositions;
+    public GameObject StartPositions;
     public NetworkConnection myConn;
+
+    private void Awake()
+    {
+        StartPositions = Instantiate(StartPositions);
+    }
     public class CustomMessage :MessageBase
     {
         public int prefabID;
@@ -60,14 +65,8 @@ public class MyNetworkManager : NetworkManager
             return;
         }
         Transform startPos;
-        if(StartPositions.Length<2)
-        {
-            startPos = null;
-        }
-        else
-        {
-            startPos = StartPositions[message.teamID];
-        }
+        startPos = StartPositions.transform.GetChild(message.teamID);
+        
         if (startPos != null)
 
         {
@@ -75,7 +74,7 @@ public class MyNetworkManager : NetworkManager
         }
         else
         {
-            Debug.LogError("startPositions[] loss");
+            Debug.LogError("startPositions loss");
             player = (GameObject)Instantiate(prefabToSpawn,Vector3.zero,new Quaternion());
         }
         player.GetComponent<PlayerControl>().teamID = message.teamID;
