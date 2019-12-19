@@ -17,6 +17,7 @@ public class MyNetworkManager : NetworkManager
     {
         public int prefabID;
         public int teamID;
+        public int spawnPointID;
     }
     public override void OnClientConnect(NetworkConnection conn) //call on client too
     {
@@ -65,7 +66,7 @@ public class MyNetworkManager : NetworkManager
             return;
         }
         Transform startPos;
-        startPos = StartPositions.transform.GetChild(message.teamID);
+        startPos = StartPositions.transform.GetChild(message.spawnPointID);
         
         if (startPos != null)
 
@@ -78,6 +79,7 @@ public class MyNetworkManager : NetworkManager
             player = (GameObject)Instantiate(prefabToSpawn,Vector3.zero,new Quaternion());
         }
         player.GetComponent<PlayerControl>().teamID = message.teamID;
+        player.GetComponent<PlayerControl>().spawnPoint = StartPositions.transform.GetChild(message.spawnPointID).position;
         //ScoreManager.Instance.添加分数
         NetworkServer.AddPlayerForConnection(conn, player, playerControllerId);
         //maybe call rpc team.addplayer here? Try call it on player if not work
@@ -125,11 +127,12 @@ public class MyNetworkManager : NetworkManager
     }*/
 
 
-    public void customAddplayer(int prefabID,int teamID)
+    public void customAddplayer(int prefabID,int teamID,int spawnPointID)
     {
         CustomMessage message = new CustomMessage();
         message.prefabID = prefabID;
         message.teamID = teamID;
+        message.spawnPointID = spawnPointID;
        //传参用cmd,传下标
         ClientScene.AddPlayer(myConn,0,message);  //send message to call OnServerAddPlayer
         

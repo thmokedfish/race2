@@ -7,6 +7,7 @@ public class Health : NetworkBehaviour
 {
     public int health;
     public int fullhealth;
+    public int respawnTime;
     private Slider hpSlider;
 
     public override void OnStartLocalPlayer()
@@ -20,12 +21,21 @@ public class Health : NetworkBehaviour
         hpSlider.gameObject.SetActive(true);
         health = fullhealth;
     }
+    private void OnEnable()
+    {
+        Brightness brightness = Camera.main.GetComponent<Brightness>();
+        brightness.saturation = 1;
+    }
 
     public float dropAmount = 1;
     void Update()
     {
         if(!isLocalPlayer)
         { return; }
+        if(Input.GetKeyDown(KeyCode.Z))
+        {
+            Die();
+        }
         if (hpSlider.value > health / (float)fullhealth)
         {
             hpSlider.value -= dropAmount * Time.deltaTime;
@@ -43,7 +53,7 @@ public class Health : NetworkBehaviour
         RpcSetHealth(health);
     }
     [ClientRpc]
-    private void RpcSetHealth(int health)
+    public void RpcSetHealth(int health)
     {
         this.health = health;
         OnHealthChanged(health);
@@ -52,13 +62,27 @@ public class Health : NetworkBehaviour
     void OnHealthChanged(int health) //SHOULD be called from both
     {
         Debug.Log("health changed"+health);
-        if(!isLocalPlayer)
-        { return; }
         if(health<=0)
         {
-            Brightness brightness=Camera.main.GetComponent<Brightness>();
-            brightness.saturation = 0;
+            Die();
         }
+    }
+
+    void Die()      //rpc called
+    {
+        //play boom animation
+        if (isLocalPlayer)
+        {
+            Brightness brightness = Camera.main.GetComponent<Brightness>();
+            brightness.saturation = 0;
+            ScoreManager.Instance.StartRespawnTiming(respawnTime, this.gameObject); //start respawn timing.
+        }
+        if (isServer)
+        {
+            PlayerControl playerControl = this.GetComponent<PlayerControl>();
+            ScoreManager.Instance.ServerDropPoint(playerControl.teamID, playerControl.playerID);
+        }
+        this.gameObject.SetActive(false);
     }
     
 }

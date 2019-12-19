@@ -9,7 +9,9 @@ public class Team :NetworkBehaviour
     [SyncVar]
     public int teamScore;
     // SyncListInt playerScore = new SyncListInt();
-    
+
+    //public List<Health> respawnWaiting = new List<Health>();
+
     public PlayerControl[] player = new PlayerControl[2];
    public  int playerCount { get; private set; }
     public void RemovePlayer(int playerID)
@@ -44,4 +46,6 @@ public class Team :NetworkBehaviour
 
         playerCount++;
     }
+
+   
 }

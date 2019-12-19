@@ -21,9 +21,12 @@ public class PlayerControl :NetworkBehaviour
     public Transform cameraTarget;
     bool isCursorLocked;
     Crosshair crosshair;
+    public Health health;
+    public Vector3 spawnPoint;
     private void Awake()
     {
         crosshair = UIManager.Instance.crosshair.GetComponent<Crosshair>();
+        health = this.GetComponent<Health>();
     }
     public override void OnStartLocalPlayer()
     {

@@ -1001,6 +1001,8 @@ MonoBehaviour:
   score: 0
   teamID: 0
   cameraTarget: {fileID: 615978386723286448}
+  health: {fileID: 0}
+  spawnPoint: {x: 0, y: 0, z: 0}
 --- !u!114 &4182535406864578327
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1015,6 +1017,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: 100
   fullhealth: 100
+  respawnTime: 5
   dropAmount: 0.1
 --- !u!114 &4182535406853833368
 MonoBehaviour:
