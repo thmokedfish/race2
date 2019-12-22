@@ -13,6 +13,7 @@ public class UIManager : MonoBehaviour
     public Image timingImage;
     public Text[] teamScoresText = new Text[2];
     public Text respawnTimingText;
+    public Transform DamageText;
     private void Awake()
     {
         Instance = this;

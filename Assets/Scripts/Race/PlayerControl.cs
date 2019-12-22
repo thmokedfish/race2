@@ -35,14 +35,17 @@ public class PlayerControl :NetworkBehaviour
     {
         crosshair = UIManager.Instance.crosshair.GetComponent<Crosshair>();
         health = this.GetComponent<Health>();
-        InitTurret();
         GameManager.Instance.team[teamID].AddPlayer(this);
         UIManager.Instance.setTeamScoreUI(teamID);
+        InitTurret();
     }
     void InitTurret()
     {
         turrent = transform.Find("Turret").GetComponent<Forge3D.F3DPlayerTurretController>();
         turrent.isLocal = isLocalPlayer;
+        Forge3D.F3DFXController controller = turrent.GetComponent<Forge3D.F3DFXController>();
+        controller.isLocal = isLocalPlayer;
+        controller.teamID = teamID;
     }
     float timer=0;
 
@@ -109,7 +112,7 @@ public class PlayerControl :NetworkBehaviour
                 PlayerControl target = hit.transform.root.GetComponent<PlayerControl>();
                 if (target.teamID == this.teamID)
                 { return; }
-                target.GetComponent<Health>().CmdTakeDamage(GameManager.Instance.BulletDamage[0]);
+                target.GetComponent<Health>().CmdTakeDamage(GameManager.Instance.WeaponDamage[0]);
             }
         }
     }

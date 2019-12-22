@@ -16,7 +16,9 @@ public class GameManager:NetworkBehaviour
     [HideInInspector] public NWH.VehiclePhysics.DesktopInputManager inputManager;
     [HideInInspector]public Team[] team = new Team[2];
     public GameObject boomEffect;
-    public int[] BulletDamage;
+    public Forge3D.F3DFXType[] WeaponTypes;
+    public int[] WeaponDamage;
+    public Dictionary<Forge3D.F3DFXType, int> DamageDic = new Dictionary<Forge3D.F3DFXType, int>();
     private void Awake()
     {
         Instance = this;
@@ -26,6 +28,16 @@ public class GameManager:NetworkBehaviour
         Transform TeamManager = GameObject.Find("Scripts/TeamManager").transform;
         team[0] = TeamManager.GetChild(0).GetComponent<Team>();
         team[1] = TeamManager.GetChild(1).GetComponent<Team>();
+        InitDamageDic();
+    }
+    private void InitDamageDic()
+    {
+        for (int i = 0; i < WeaponTypes.Length; i++)
+        {
+            if (i == WeaponDamage.Length) { break; }
+            if (DamageDic.ContainsKey(WeaponTypes[i])) { continue; }
+            DamageDic.Add(WeaponTypes[i], WeaponDamage[i]);
+        }
     }
     public void PlayBoomEffect(Vector3 pos)
     {

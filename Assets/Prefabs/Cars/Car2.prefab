@@ -12866,6 +12866,7 @@ GameObject:
   - component: {fileID: 860514663977672654}
   - component: {fileID: 6788298259227677807}
   - component: {fileID: 8485596759574714907}
+  - component: {fileID: 3834311071968392912}
   m_Layer: 0
   m_Name: Car2
   m_TagString: Untagged
@@ -13337,7 +13338,7 @@ MonoBehaviour:
   score: 0
   cameraTarget: {fileID: 0}
   health: {fileID: 0}
-  spawnPoint: {x: 0, y: 0, z: 0}
+  spawnPoint: {fileID: 0}
 --- !u!114 &860514663977672654
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13409,6 +13410,26 @@ MonoBehaviour:
   m_SnapThreshold: 5
   m_InterpolateRotation: 1
   m_InterpolateMovement: 1
+--- !u!114 &3834311071968392912
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8049967613309322434}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -1267208747, guid: dc443db3e92b4983b9738c1131f555cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Target: {fileID: 2560113629954979646}
+  m_ChildIndex: 0
+  m_SendInterval: 0.1
+  m_SyncRotationAxis: 7
+  m_RotationSyncCompression: 0
+  m_MovementThreshold: 0.001
+  m_InterpolateRotation: 0.5
+  m_InterpolateMovement: 0.5
 --- !u!1 &8049967613310278922
 GameObject:
   m_ObjectHideFlags: 0
@@ -20562,6 +20583,12 @@ PrefabInstance:
 --- !u!4 &2560113628816238999 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2727663711536940610, guid: 43ba7af9c92dc574fb2cc1542d0b470c,
+    type: 3}
+  m_PrefabInstance: {fileID: 458736564807692245}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &2560113629954979646 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2727663712809933035, guid: 43ba7af9c92dc574fb2cc1542d0b470c,
     type: 3}
   m_PrefabInstance: {fileID: 458736564807692245}
   m_PrefabAsset: {fileID: 0}
