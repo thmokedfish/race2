@@ -25,7 +25,6 @@ namespace Forge3D
     {
         // Singleton instance
         public static F3DFXController instance;
-
         // GUI captions
         string[] fxTypeName =
         {

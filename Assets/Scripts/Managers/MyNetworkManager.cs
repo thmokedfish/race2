@@ -79,7 +79,7 @@ public class MyNetworkManager : NetworkManager
             player = (GameObject)Instantiate(prefabToSpawn,Vector3.zero,new Quaternion());
         }
         player.GetComponent<PlayerControl>().teamID = message.teamID;
-        player.GetComponent<PlayerControl>().spawnPoint = StartPositions.transform.GetChild(message.spawnPointID).position;
+        player.GetComponent<PlayerControl>().spawnPoint =startPos.transform;
         //ScoreManager.Instance.添加分数
         NetworkServer.AddPlayerForConnection(conn, player, playerControllerId);
         //maybe call rpc team.addplayer here? Try call it on player if not work

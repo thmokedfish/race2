@@ -5,7 +5,6 @@ using UnityEngine.Networking;
 using UnityEngine.Events;
 public class PointBall : NetworkBehaviour
 {
-    public UnityEvent ballTrigged = new UnityEvent();
     void OnTriggerEnter(Collider collider)
     {
         PlayerControl playerControl;

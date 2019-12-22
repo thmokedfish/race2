@@ -146,34 +146,7 @@ public class ScoreManager : NetworkBehaviour
     {
         UIManager.Instance.setTeamScoreUI(team[teamID]);
     }
-    public void StartRespawnTiming(int time,GameObject go)
-    {
-        StartCoroutine(RespawnTiming(time, go));        
-    }
-    public IEnumerator RespawnTiming(int time,GameObject go)
-    {
-        for (; time > 0; time--)
-        {
-            UIManager.Instance.setRespawnTiming(time);
-            yield return new WaitForSeconds(1f);
-        }
-        CmdRespawn(go);
-        UIManager.Instance.setRespawnTiming(-1);
-    }
-    [Command]
-    private void CmdRespawn(GameObject go)
-    {
-        Health health = go.GetComponent<Health>();
-        health.RpcSetHealth(health.fullhealth);
-        RpcRespawn(go);
-    }
 
-    [ClientRpc]
-    private void RpcRespawn(GameObject go)
-    {
-        go.SetActive(true);
-        go.transform.position = go.GetComponent<PlayerControl>().spawnPoint;
-    }
     public void ServerDropPoint(int teamID,int playerID)
     {
         PlayerControl player = team[teamID].player[playerID];
