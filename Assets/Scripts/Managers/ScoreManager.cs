@@ -8,7 +8,7 @@ public class ScoreManager : NetworkBehaviour
     public static ScoreManager Instance { get; private set; }
     public GameObject boxPrefab;
     private int nextBallScore;
-    private List<Text> scoreText = new List<Text>();      //每当有玩家连接，add++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+    //private List<Text> scoreText = new List<Text>();      //每当有玩家连接，add
     private Image timingImage;
     private List<Sprite> timingSprites = new List<Sprite>(5);
     public float radius;
@@ -145,5 +145,15 @@ public class ScoreManager : NetworkBehaviour
     void RpcSetScoreText(int teamID)
     {
         UIManager.Instance.setTeamScoreUI(team[teamID]);
+    }
+
+    public void ServerDropPoint(int teamID,int playerID)
+    {
+        PlayerControl player = team[teamID].player[playerID];
+        int dropped = player.score / 2;
+        player.score -= dropped;
+        team[teamID].teamScore -= dropped;
+        //spawn point box
+        RpcSetScoreText(teamID);
     }
 }

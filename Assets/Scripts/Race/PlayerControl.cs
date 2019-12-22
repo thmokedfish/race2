@@ -8,38 +8,44 @@ using Cinemachine;
 public class PlayerControl :NetworkBehaviour
 {
     bool isFiring; // Is turret currently in firing state
-    public CinemachineFreeLook FreeLookCam;
-    public Forge3D.F3DPlayerTurretController turrent;
+    //public CinemachineFreeLook FreeLookCam;
+    private Forge3D.F3DPlayerTurretController turrent;
     [Range(0,1)]
     public int prefabIndex;
+    [SyncVar]
+    public int teamID;//0 or 1
     [SyncVar]
     public int playerID;//在队伍中的ID,0 or 1
     [SyncVar]
     public int score;
-    [SyncVar]
-    public int teamID;//0 or 1
-    public Transform cameraTarget;
+    [HideInInspector]public Transform cameraTarget;
     bool isCursorLocked;
     Crosshair crosshair;
-    private void Awake()
-    {
-        crosshair = UIManager.Instance.crosshair.GetComponent<Crosshair>();
-    }
+    [HideInInspector]public Health health;
+    [HideInInspector]public Transform spawnPoint;
     public override void OnStartLocalPlayer()
     {
         GameManager.Instance.localPlayer = this;
         CursorLock(true);
-        FreeLookCam.gameObject.SetActive(true);
+        // FreeLookCam.gameObject.SetActive(true);
+        SetFreeLookCam();
+        GameManager.Instance.inputManager.vehicleController = this.GetComponent<NWH.VehiclePhysics.VehicleController>();
     }
     private void Start()  //不区分是否是localPlayer的部分
     {
-        InitTurret();
+        crosshair = UIManager.Instance.crosshair.GetComponent<Crosshair>();
+        health = this.GetComponent<Health>();
         GameManager.Instance.team[teamID].AddPlayer(this);
         UIManager.Instance.setTeamScoreUI(teamID);
+        InitTurret();
     }
     void InitTurret()
     {
+        turrent = transform.Find("Turret").GetComponent<Forge3D.F3DPlayerTurretController>();
         turrent.isLocal = isLocalPlayer;
+        Forge3D.F3DFXController controller = turrent.GetComponent<Forge3D.F3DFXController>();
+        controller.isLocal = isLocalPlayer;
+        controller.teamID = teamID;
     }
     float timer=0;
 
@@ -106,7 +112,7 @@ public class PlayerControl :NetworkBehaviour
                 PlayerControl target = hit.transform.root.GetComponent<PlayerControl>();
                 if (target.teamID == this.teamID)
                 { return; }
-                CmdDamage(target.gameObject);
+                target.GetComponent<Health>().CmdTakeDamage(GameManager.Instance.WeaponDamage[0]);
             }
         }
     }
@@ -125,12 +131,6 @@ public class PlayerControl :NetworkBehaviour
             Cursor.lockState = CursorLockMode.Locked;
             Cursor.visible = false;
         }
-    }
-    [Command]
-    void CmdDamage(GameObject go)
-    {
-        Debug.Log("cmd Damage");
-        go.GetComponent<Health>().TakeDamage(GameManager.Instance.VulcanDamage);
     }
     [Command]
     void CmdFire()
@@ -213,11 +213,17 @@ public class PlayerControl :NetworkBehaviour
     void SetFreeLookCam()
     {
         CinemachineFreeLook freeLookCam;
-        freeLookCam = GameObject.FindObjectOfType<CinemachineFreeLook>();
+        freeLookCam = this.transform.Find("FreeLookCam").GetComponent<CinemachineFreeLook>();
+        cameraTarget = transform.Find("LookAt");
         if (freeLookCam)
         {
             freeLookCam.LookAt = this.cameraTarget;
-            freeLookCam.Follow = this.cameraTarget;
+            freeLookCam.Follow = this.transform;
+            freeLookCam.gameObject.SetActive(true);
+        }
+        else
+        {
+            Debug.LogError("no child named 'FreeLookCam'!");
         }
     }
 

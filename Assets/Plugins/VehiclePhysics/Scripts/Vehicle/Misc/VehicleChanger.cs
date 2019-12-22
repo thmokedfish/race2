@@ -66,9 +66,10 @@ namespace NWH.VehiclePhysics
 
         void Update()
         {
-            if(!CharacterBased && Input.GetButtonDown("ChangeVehicle"))
+            Debug.Log(vehicles.Count + " " + currentIndex);
+            //if(!CharacterBased && Input.GetButtonDown("ChangeVehicle"))
             {
-                NextVehicle();
+                //NextVehicle();
             }
 
             if(DeactivateAll)

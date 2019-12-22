@@ -12,6 +12,8 @@ public class UIManager : MonoBehaviour
     public Slider hpSlider;
     public Image timingImage;
     public Text[] teamScoresText = new Text[2];
+    public Text respawnTimingText;
+    public Transform DamageText;
     private void Awake()
     {
         Instance = this;
@@ -67,4 +69,15 @@ public class UIManager : MonoBehaviour
         }
     }
 
+    public void setRespawnTiming(int time)
+    {
+        if(time==-1)
+        {
+            respawnTimingText.text = "";
+        }
+       else
+        {
+            respawnTimingText.text = time.ToString();
+        }
+    }
 }
