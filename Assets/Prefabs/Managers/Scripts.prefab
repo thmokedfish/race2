@@ -450,7 +450,7 @@ PrefabInstance:
     - target: {fileID: 8128151471991203442, guid: 888e96469306999449a8d77a94adb650,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 10.09
+      value: -3.99
       objectReference: {fileID: 0}
     - target: {fileID: 8128151471991203442, guid: 888e96469306999449a8d77a94adb650,
         type: 3}
@@ -729,17 +729,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 578740754233729098, guid: e0f1d525a6cd9c84bb8519758e468c49,
         type: 3}
-      propertyPath: BulletDamage.Array.size
+      propertyPath: WeaponTypes.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 578740754233729098, guid: e0f1d525a6cd9c84bb8519758e468c49,
+        type: 3}
+      propertyPath: WeaponDamage.Array.size
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 578740754233729098, guid: e0f1d525a6cd9c84bb8519758e468c49,
         type: 3}
       propertyPath: boomEffect
       value: 
-      objectReference: {fileID: 100002, guid: 2f47b5cc2c5d54c40b29b62ba825671a, type: 3}
+      objectReference: {fileID: 6729941064871064971, guid: a5ab54c2d80075348ac310b53a498e58,
+        type: 3}
     - target: {fileID: 578740754233729098, guid: e0f1d525a6cd9c84bb8519758e468c49,
         type: 3}
-      propertyPath: BulletDamage.Array.data[0]
+      propertyPath: WeaponDamage.Array.data[0]
       value: 5
       objectReference: {fileID: 0}
     m_RemovedComponents: []

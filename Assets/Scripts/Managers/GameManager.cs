@@ -46,7 +46,7 @@ public class GameManager:NetworkBehaviour
     private IEnumerator BoomEffect(Vector3 pos)
     {
         GameObject boom = Instantiate(boomEffect, pos,new Quaternion());
-        yield return new WaitForSeconds(2);
+        yield return new WaitForSeconds(5);
         Destroy(boom);
     }
     public void StartRespawnTiming(int time, GameObject go)
