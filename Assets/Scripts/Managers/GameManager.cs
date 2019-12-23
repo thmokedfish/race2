@@ -75,8 +75,11 @@ public class GameManager:NetworkBehaviour
     private void RpcRespawn(GameObject go) /////////////////Need checkout
     {
         go.SetActive(true);
-        go.transform.position = go.GetComponent<PlayerControl>().spawnPoint.position;
-        go.transform.rotation = go.GetComponent<PlayerControl>().spawnPoint.rotation;
+        PlayerControl player= go.GetComponent<PlayerControl>();
+        if (!player) { return; }
+        if (!player.isLocalPlayer) { return; }
+        go.transform.position = player.spawnPoint.position;
+        go.transform.rotation = player.spawnPoint.rotation;
     }
 
 

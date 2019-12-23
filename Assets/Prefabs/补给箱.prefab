@@ -87,10 +87,10 @@ GameObject:
   m_Component:
   - component: {fileID: 7472781757344978495}
   - component: {fileID: 349709084225401324}
-  - component: {fileID: 1198042924359949348}
-  - component: {fileID: 7005551112003168992}
+  - component: {fileID: 1866360924866366031}
+  - component: {fileID: 6208022010478299807}
   m_Layer: 0
-  m_Name: boxx
+  m_Name: "\u8865\u7ED9\u7BB1"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -124,7 +124,7 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 229.9412, y: 121.162025, z: 203.42177}
   m_Center: {x: 2.6581607, y: -4.7775674, z: -3.1565957}
---- !u!114 &1198042924359949348
+--- !u!114 &1866360924866366031
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -133,15 +133,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 7472781757345335839}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8dfe68187a0932948aa0ee4af46a2be5, type: 3}
+  m_Script: {fileID: 11500000, guid: 3166417bbab3951499e494e29b679978, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ballTrigged:
-    m_PersistentCalls:
-      m_Calls: []
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
---- !u!114 &7005551112003168992
+  WeaponType: 0
+--- !u!114 &6208022010478299807
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

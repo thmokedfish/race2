@@ -20,9 +20,13 @@ namespace Forge3D
         float timer = 0f; // Projectile timer
         float fxOffset; // Offset of fxImpact
 
-        public int teamID;
-        public bool hasAuthority;
-
+        private int teamID;
+        private bool hasAuthority;
+        public void setVariable(int teamID,bool hasAuthority)
+        {
+            this.teamID = teamID;
+            this.hasAuthority = hasAuthority;
+        }
         void Awake()
         {
             // Cache transform and get all particle systems attached
@@ -175,6 +179,7 @@ namespace Forge3D
             if (!health) { return; }
             PlayerControl playerControl = health.GetComponent<PlayerControl>();
             if (playerControl.teamID == this.teamID) { return; }
+
             if (GameManager.Instance.DamageDic.ContainsKey(fxType))
             {
                 health.TakeDamage(GameManager.Instance.DamageDic[fxType]);

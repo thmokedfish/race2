@@ -13,10 +13,18 @@ public class UIManager : MonoBehaviour
     public Image timingImage;
     public Text[] teamScoresText = new Text[2];
     public Text respawnTimingText;
+    [Header("ShowDamageUI")]
     public Transform DamageText;
+    public float DamageTextDisappearTime;
+    public float DamageTextMoveRate;
+    [Header("MiniMap")]
+    //public GameObject MiniMapCamera;
+    public Transform mapCorner;//按照该点与玩家的向量差计算位置。目前是取边角
+    public float radius; //计算图片width/2 与实际地图中心边缘距离的比。radius等于实际地图中心与边缘的距离。比如若为正方形地图，则等于边长/2
     private void Awake()
     {
         Instance = this;
+        //MiniMapCamera = Instantiate(MiniMapCamera);
     }
     private void Start()
     {

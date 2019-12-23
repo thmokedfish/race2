@@ -21,6 +21,7 @@ public class PlayerControl :NetworkBehaviour
     [HideInInspector]public Transform cameraTarget;
     bool isCursorLocked;
     Crosshair crosshair;
+    Forge3D.F3DFXController controller;
     [HideInInspector]public Health health;
     [HideInInspector]public Transform spawnPoint;
     public override void OnStartLocalPlayer()
@@ -43,9 +44,8 @@ public class PlayerControl :NetworkBehaviour
     {
         turrent = transform.Find("Turret").GetComponent<Forge3D.F3DPlayerTurretController>();
         turrent.isLocal = isLocalPlayer;
-        Forge3D.F3DFXController controller = turrent.GetComponent<Forge3D.F3DFXController>();
-        controller.isLocal = isLocalPlayer;
-        controller.teamID = teamID;
+        controller = turrent.GetComponent<Forge3D.F3DFXController>();
+        controller.SetVariable(teamID, this.isLocalPlayer);
     }
     float timer=0;
 
@@ -77,6 +77,22 @@ public class PlayerControl :NetworkBehaviour
         {
             timer += Time.deltaTime;
         }
+    }
+
+    public void SwitchWeapon(Forge3D.F3DFXType type)
+    {
+        CmdSwitch(type);
+    }
+
+    [Command]
+    private void CmdSwitch(Forge3D.F3DFXType type)
+    {
+        RpcSwitch(type);
+    }
+    [ClientRpc]
+    private void RpcSwitch(Forge3D.F3DFXType type)
+    {
+        controller.DefaultFXType = type;
     }
 
     void CheckInputForCursorLock()
@@ -112,7 +128,7 @@ public class PlayerControl :NetworkBehaviour
                 PlayerControl target = hit.transform.root.GetComponent<PlayerControl>();
                 if (target.teamID == this.teamID)
                 { return; }
-                target.GetComponent<Health>().CmdTakeDamage(GameManager.Instance.WeaponDamage[0]);
+                target.GetComponent<Health>().TakeDamage(GameManager.Instance.WeaponDamage[0]);
             }
         }
     }

@@ -32,8 +32,8 @@ namespace Forge3D
             "Heavy plasma beam", "Lightning gun", "Flamethrower", "Pulse laser"
         };
 
-        public int teamID;
-        public bool isLocal;
+        private int teamID;
+        private bool isLocal;
 
         // Current firing socket
         int curSocket=0;
@@ -319,8 +319,7 @@ namespace Forge3D
                 proj.SetOffset(vulcanOffset);
             }
 
-            proj.teamID = this.teamID;      //mark teamID for prijectile
-            proj.hasAuthority = this.isLocal;
+            proj.setVariable(teamID, isLocal);    //mark teamID for projectile
 
             // Emit one bullet shell
             if(ShellParticles.Length>0)
@@ -331,6 +330,12 @@ namespace Forge3D
 
             // Advance to next turret socket
             AdvanceSocket();
+        }
+
+        public void SetVariable(int teamID,bool isLocal)
+        {
+            this.teamID = teamID;
+            this.isLocal = isLocal;
         }
 
         // Spawn vulcan weapon impact

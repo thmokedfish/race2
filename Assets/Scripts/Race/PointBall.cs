@@ -7,14 +7,14 @@ public class PointBall : NetworkBehaviour
 {
     void OnTriggerEnter(Collider collider)
     {
-        PlayerControl playerControl;
+        PlayerControl playerControl = collider.transform.root.GetComponent<PlayerControl>();
         Debug.Log(collider.name);
-        if ((playerControl = collider.transform.root.GetComponent<PlayerControl>()))
+        if (playerControl)
         {
             Debug.Log("trigger enter");
             if (isServer)
             {
-                ScoreManager.Instance.GetBall(playerControl.teamID,playerControl.playerID);
+                ScoreManager.Instance.GetBall(playerControl.teamID, playerControl.playerID);
             }
             Destroy(this.gameObject);
         }

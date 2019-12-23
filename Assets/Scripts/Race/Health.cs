@@ -11,6 +11,9 @@ public class Health : NetworkBehaviour
     private Slider hpSlider;
     private GameObject Smoke;
     private Transform DamageText;
+    private float DamageTextDisappearTime;
+    private float DamageTextMoveRate;
+    private RectTransform CanvasRect;
 
     private void Awake()
     {
@@ -18,7 +21,10 @@ public class Health : NetworkBehaviour
     }
     private void Start()
     {
+        CanvasRect = UIManager.Instance.GetComponent<RectTransform>();
         DamageText = UIManager.Instance.DamageText;
+        DamageTextDisappearTime = UIManager.Instance.DamageTextDisappearTime;
+        DamageTextMoveRate = UIManager.Instance.DamageTextMoveRate;
     }
     public override void OnStartLocalPlayer()
     {
@@ -63,8 +69,27 @@ public class Health : NetworkBehaviour
     public void TakeDamage(int damage)
     {
         //ui 报数
-        Forge3D.F3DPoolManager.Pools["GeneratedPool"].Spawn(DamageText.transform,UIManager.Instance.transform, this.transform.position,new Quaternion());
+        Transform damageImpact=Forge3D.F3DPoolManager.Pools["GeneratedPool"].Spawn(DamageText.transform,UIManager.Instance.transform, Vector3.zero,new Quaternion());
+        Vector3 screenPos = Camera.main.WorldToScreenPoint(this.transform.position);
+        Vector2 pos;
+        RectTransformUtility.ScreenPointToLocalPointInRectangle(CanvasRect,screenPos,null,out pos);
+        damageImpact.localPosition = pos;
+        damageImpact.GetComponent<Text>().text = damage.ToString();
+        StartCoroutine(DespawnDamageText(damageImpact, DamageTextDisappearTime));
         CmdTakeDamage(damage);
+    }
+
+    IEnumerator DespawnDamageText(Transform transform,float delay)
+    {
+        float time = 0;
+        while(time<delay)
+        {
+            time += Time.deltaTime;
+            transform.localPosition += Vector3.up * DamageTextMoveRate * Time.deltaTime;
+            //增加透明度
+            yield return null;
+        }
+        Forge3D.F3DPoolManager.Pools["GeneratedPool"].Despawn(transform);
     }
 
     [Command]

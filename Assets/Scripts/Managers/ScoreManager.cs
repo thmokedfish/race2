@@ -119,8 +119,8 @@ public class ScoreManager : NetworkBehaviour
             }
         }
         //GameObject ball = Instantiate(Resources.Load<GameObject>("PointBall"),ballPosition,new Quaternion ());
-        GameObject box = Instantiate(boxPrefab, ballPosition, new Quaternion());
-        NetworkServer.Spawn(box);//spawn ball for clients
+        GameObject ball = Instantiate(boxPrefab, ballPosition, new Quaternion());
+        NetworkServer.Spawn(ball);//spawn ball for clients
         //ball.GetComponent<PointBall>().ballTrigged.AddListener();
     }
     public void SetWinner(int index)
