@@ -136,5 +136,5 @@ MonoBehaviour:
   carPrefabs:
   - {fileID: 6601316615773509037, guid: 106e41dddd8b6e546bbb301d44bc743f, type: 3}
   - {fileID: 8049967613309322434, guid: cdd110bbba5cd404ba2726a3643d1e95, type: 3}
-  StartPositions: {fileID: 4277242501934420827, guid: 05ef2909443d3be458f1836da33793b0,
+  StartPositions: {fileID: 5649735756531477456, guid: 62611b665daee4a4787f815f1b1e002b,
     type: 3}

@@ -45,7 +45,7 @@ Category {
 	ZTest Always Cull Off ZWrite Off Fog { Mode Off }
 	
 	// -----------------------------------------------------------
-	// ARB fragment program
+	// DX9+ level
 	
 	Subshader { 
 		Pass {
@@ -77,7 +77,7 @@ ENDCG
 	}
 			
 	// -----------------------------------------------------------
-	// Radeon 9000
+	// DX8 level
 	
 	Subshader {
 		Pass {
@@ -85,7 +85,7 @@ ENDCG
 
 CGPROGRAM
 #pragma vertex vert
-#pragma exclude_renderers gles xbox360 ps3
+#pragma exclude_renderers shaderonly
 // use the same vertex program as in FP path
 ENDCG
 

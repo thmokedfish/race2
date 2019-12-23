@@ -15,7 +15,7 @@ CGINCLUDE
 #pragma exclude_renderers gles
 struct v2f_ao {
 	float4 pos : POSITION;
-	float2 uv : TEXCOORD0; 
+	float2 uv : TEXCOORD0;
 	float2 uvr : TEXCOORD1;
 };
 
@@ -28,14 +28,15 @@ v2f_ao vert_ao (appdata_img v)
 	o.pos = UnityObjectToClipPos (v.vertex);
 	o.uv = TRANSFORM_TEX(v.texcoord, _CameraDepthNormalsTexture);
 	o.uvr = v.texcoord.xy * _NoiseScale;
-	return o; 
+	return o;
 }
 
 sampler2D _CameraDepthNormalsTexture;
 sampler2D _RandomTexture;
 float4 _Params; // x=radius, y=minz, z=attenuation power, w=SSAO power
+float _DepthCutoff;
 
-#if defined(SHADER_API_XBOX360)|| defined(SHADER_API_D3D11)
+#ifdef SHADER_API_XBOX360
 
 #	define INPUT_SAMPLE_COUNT 8
 #	include "frag_ao.cginc"
@@ -50,10 +51,8 @@ float4 _Params; // x=radius, y=minz, z=attenuation power, w=SSAO power
 #	include "frag_ao.cginc"
 
 #else
-
 #	define INPUT_SAMPLE_COUNT
 #	include "frag_ao.cginc"
-
 #endif
 
 ENDCG
@@ -81,7 +80,7 @@ half4 frag (v2f_ao i) : COLOR
 		float3(0.1871898,-0.702764,-0.2317479),
 		float3(0.8849149,0.2842076,0.368524),
 	};
-    return frag_ao (i, SAMPLE_COUNT, RAND_SAMPLES);
+	return frag_ao (i, SAMPLE_COUNT, RAND_SAMPLES);
 }
 ENDCG
 
@@ -116,7 +115,7 @@ half4 frag (v2f_ao i) : COLOR
 		float3(0.03704464,-0.939131,0.1358765),
 		float3(-0.6984446,-0.6003422,-0.04016943),
 	};
-    return frag_ao (i, SAMPLE_COUNT, RAND_SAMPLES);
+	return frag_ao (i, SAMPLE_COUNT, RAND_SAMPLES);
 }
 ENDCG
 
@@ -163,7 +162,7 @@ half4 frag (v2f_ao i) : COLOR
 		float3(-0.3465451,-0.1654651,-0.6746758),
 		float3(0.2448421,-0.1610962,0.1289366),
 	};
-    return frag_ao (i, SAMPLE_COUNT, RAND_SAMPLES);
+	return frag_ao (i, SAMPLE_COUNT, RAND_SAMPLES);
 }
 ENDCG
 
@@ -214,30 +213,30 @@ half4 frag( v2f i ) : COLOR
 {
 	#define NUM_BLUR_SAMPLES 4
 	
-    float2 o = _TexelOffsetScale.xy;
-    
-    half sum = tex2D(_SSAO, i.uv).r * (NUM_BLUR_SAMPLES + 1);
-    half denom = NUM_BLUR_SAMPLES + 1;
-    
-    half4 geom = tex2D (_CameraDepthNormalsTexture, i.uv);
-    
-    for (int s = 0; s < NUM_BLUR_SAMPLES; ++s)
-    {
-        float2 nuv = i.uv + o * (s+1);
-        half4 ngeom = tex2D (_CameraDepthNormalsTexture, nuv.xy);
-        half coef = (NUM_BLUR_SAMPLES - s) * CheckSame (geom, ngeom);
-        sum += tex2D (_SSAO, nuv.xy).r * coef;
-        denom += coef;
-    }
-    for (int s = 0; s < NUM_BLUR_SAMPLES; ++s)
-    {
-        float2 nuv = i.uv - o * (s+1);
-        half4 ngeom = tex2D (_CameraDepthNormalsTexture, nuv.xy);
-        half coef = (NUM_BLUR_SAMPLES - s) * CheckSame (geom, ngeom);
-        sum += tex2D (_SSAO, nuv.xy).r * coef;
-        denom += coef;
-    }
-    return sum / denom;
+	float2 o = _TexelOffsetScale.xy;
+	
+	half sum = tex2D(_SSAO, i.uv).r * (NUM_BLUR_SAMPLES + 1);
+	half denom = NUM_BLUR_SAMPLES + 1;
+	
+	half4 geom = tex2D (_CameraDepthNormalsTexture, i.uv);
+	
+	for (int s = 0; s < NUM_BLUR_SAMPLES; ++s)
+	{
+		float2 nuv = i.uv + o * (s+1);
+		half4 ngeom = tex2D (_CameraDepthNormalsTexture, nuv.xy);
+		half coef = (NUM_BLUR_SAMPLES - s) * CheckSame (geom, ngeom);
+		sum += tex2D (_SSAO, nuv.xy).r * coef;
+		denom += coef;
+	}
+	for (int s = 0; s < NUM_BLUR_SAMPLES; ++s)
+	{
+		float2 nuv = i.uv - o * (s+1);
+		half4 ngeom = tex2D (_CameraDepthNormalsTexture, nuv.xy);
+		half coef = (NUM_BLUR_SAMPLES - s) * CheckSame (geom, ngeom);
+		sum += tex2D (_SSAO, nuv.xy).r * coef;
+		denom += coef;
+	}
+	return sum / denom;
 }
 ENDCG
 	}
