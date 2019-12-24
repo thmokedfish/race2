@@ -49,13 +49,13 @@ public class Health : NetworkBehaviour
     {
         if (!isLocalPlayer)
         { return; }
-        if (Input.GetKeyDown(KeyCode.Z))
+       // if (Input.GetKeyDown(KeyCode.Z))
         {
-            Die();
+      //      Die();
         }
-        if(Input.GetKeyDown(KeyCode.C))
+       // if(Input.GetKeyDown(KeyCode.C))
         {
-            TakeDamage(1);
+       //     TakeDamage(1);
         }
         if (hpSlider.value > health / (float)fullhealth)
         {
@@ -95,6 +95,7 @@ public class Health : NetworkBehaviour
     [Command]
     public void CmdTakeDamage(int damage)//only on server
     {
+        Debug.Log("cmdTakeDamage");
         health -= damage;
         if (health < 0)
             health = 0;

@@ -362,6 +362,7 @@ namespace Forge3D
             {
                 proj.SetOffset(soloGunOffset);
             }
+            proj.setVariable(teamID, isLocal);    //mark teamID for projectile
             F3DAudioController.instance.SoloGunShot(TurretSocket[curSocket].position);
             AdvanceSocket();
         }
@@ -429,6 +430,7 @@ namespace Forge3D
             {
                 proj.SetOffset(seekerOffset);
             }
+            proj.setVariable(teamID, isLocal);    //mark teamID for projectile
             F3DAudioController.instance.SeekerShot(TurretSocket[curSocket].position);
             AdvanceSocket();
         }
@@ -481,6 +483,7 @@ namespace Forge3D
             {
                 proj.SetOffset(plasmaOffset);
             }
+            proj.setVariable(teamID, isLocal);    //mark teamID for projectile
             F3DAudioController.instance.PlasmaGunShot(TurretSocket[curSocket].position);
             AdvanceSocket();
         }
@@ -550,6 +553,7 @@ namespace Forge3D
             {
                 proj.SetOffset(laserImpulseOffset);
             }
+            proj.setVariable(teamID, isLocal);    //mark teamID for projectile
             F3DAudioController.instance.LaserImpulseShot(TurretSocket[curSocket].position);
 
             AdvanceSocket();

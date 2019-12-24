@@ -13,6 +13,7 @@ public class SpawnButton : MonoBehaviour
     }
     void SpawnButton_OnClick()
     {
-        GameManager.Instance.networkManager.customAddplayer(prefabID,teamID,spawnPointID);
+        GameManager.Instance.networkManager.CustomAddplayer(prefabID,teamID,spawnPointID);
+        UIManager.Instance.ChoosingPanel.SetActive(false);
     }
 }

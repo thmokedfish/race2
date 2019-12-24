@@ -27,14 +27,8 @@ public class MyNetworkManager : NetworkManager
         {
             // Ready/AddPlayer is usually triggered by a scene load completing. if no scene was loaded, then Ready/AddPlayer it here instead.
             ClientScene.Ready(conn);
-            /*
-            if (autoCreatePlayer)
-            {
-                Debug.LogWarning("auto create player");
-                ClientScene.AddPlayer(0);
-            }
-            */
         }
+        UIManager.Instance.ChoosingPanel.SetActive(true); 
     }
     public override void OnServerAddPlayer(NetworkConnection conn, short playerControllerId, NetworkReader extraMessageReader)
     {
@@ -127,7 +121,7 @@ public class MyNetworkManager : NetworkManager
     }*/
 
 
-    public void customAddplayer(int prefabID,int teamID,int spawnPointID)
+    public void CustomAddplayer(int prefabID,int teamID,int spawnPointID)
     {
         CustomMessage message = new CustomMessage();
         message.prefabID = prefabID;
@@ -142,11 +136,12 @@ public class MyNetworkManager : NetworkManager
     {
         //更新playerID,playerscores
         Debug.Log("on stop client"); //call on client
-        if (GameManager.Instance.localPlayer)
+        if (GameManager.Instance.LocalPlayer)
         {
-            int teamid = GameManager.Instance.localPlayer.teamID;
-            int playerid = GameManager.Instance.localPlayer.playerID;
+            int teamid = GameManager.Instance.LocalPlayer.teamID;
+            int playerid = GameManager.Instance.LocalPlayer.playerID;
             ScoreManager.Instance.RemovePlayer(teamid, playerid);
+            GameManager.Instance.LocalPlayer = null;
         } 
 #if UNITY_EDITOR
         UnityEditor.EditorApplication.isPlaying = false;

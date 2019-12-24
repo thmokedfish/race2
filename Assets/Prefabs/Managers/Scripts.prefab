@@ -497,6 +497,12 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8128151471991203347, guid: 888e96469306999449a8d77a94adb650,
+        type: 3}
+      propertyPath: ballPrefab
+      value: 
+      objectReference: {fileID: 4863413430794508644, guid: b27bfd6a439072647865bd14b16cad1b,
+        type: 3}
     - target: {fileID: 8128151471991203346, guid: 888e96469306999449a8d77a94adb650,
         type: 3}
       propertyPath: m_AssetId.i0
@@ -730,12 +736,12 @@ PrefabInstance:
     - target: {fileID: 578740754233729098, guid: e0f1d525a6cd9c84bb8519758e468c49,
         type: 3}
       propertyPath: WeaponTypes.Array.size
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 578740754233729098, guid: e0f1d525a6cd9c84bb8519758e468c49,
         type: 3}
       propertyPath: WeaponDamage.Array.size
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 578740754233729098, guid: e0f1d525a6cd9c84bb8519758e468c49,
         type: 3}
@@ -745,9 +751,30 @@ PrefabInstance:
         type: 3}
     - target: {fileID: 578740754233729098, guid: e0f1d525a6cd9c84bb8519758e468c49,
         type: 3}
+      propertyPath: WeaponTypes.Array.data[1]
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 578740754233729098, guid: e0f1d525a6cd9c84bb8519758e468c49,
+        type: 3}
       propertyPath: WeaponDamage.Array.data[0]
       value: 5
       objectReference: {fileID: 0}
+    - target: {fileID: 578740754233729098, guid: e0f1d525a6cd9c84bb8519758e468c49,
+        type: 3}
+      propertyPath: WeaponDamage.Array.data[1]
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 578740754233729098, guid: e0f1d525a6cd9c84bb8519758e468c49,
+        type: 3}
+      propertyPath: BoxSpawnTime
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 578740754233729098, guid: e0f1d525a6cd9c84bb8519758e468c49,
+        type: 3}
+      propertyPath: BoxPrefab
+      value: 
+      objectReference: {fileID: 7472781757345335839, guid: 9836d9066ef5bf04f9a4952cfaa599b6,
+        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e0f1d525a6cd9c84bb8519758e468c49, type: 3}
 --- !u!1 &2978223270393388018 stripped

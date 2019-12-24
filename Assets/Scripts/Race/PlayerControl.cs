@@ -24,20 +24,23 @@ public class PlayerControl :NetworkBehaviour
     Forge3D.F3DFXController controller;
     [HideInInspector]public Health health;
     [HideInInspector]public Transform spawnPoint;
+    public int WeaponGrade { get; private set; }
     public override void OnStartLocalPlayer()
     {
-        GameManager.Instance.localPlayer = this;
+        crosshair = UIManager.Instance.Crosshair.GetComponent<Crosshair>();
+        GameManager.Instance.LocalPlayer = this;
         CursorLock(true);
         // FreeLookCam.gameObject.SetActive(true);
         SetFreeLookCam();
         GameManager.Instance.inputManager.vehicleController = this.GetComponent<NWH.VehiclePhysics.VehicleController>();
+        WeaponGrade = 0;
+        SwitchWeapon(GameManager.Instance.WeaponTypes[WeaponGrade]);
     }
     private void Start()  //不区分是否是localPlayer的部分
     {
-        crosshair = UIManager.Instance.crosshair.GetComponent<Crosshair>();
         health = this.GetComponent<Health>();
         GameManager.Instance.team[teamID].AddPlayer(this);
-        UIManager.Instance.setTeamScoreUI(teamID);
+        UIManager.Instance.SetTeamScoreUI(teamID);
         InitTurret();
     }
     void InitTurret()
@@ -78,7 +81,12 @@ public class PlayerControl :NetworkBehaviour
             timer += Time.deltaTime;
         }
     }
-
+    public void UpGradeWeapon()
+    {
+        WeaponGrade++;
+        if (WeaponGrade >= GameManager.Instance.WeaponTypes.Length) { return; }
+        SwitchWeapon(GameManager.Instance.WeaponTypes[WeaponGrade]);
+    }
     public void SwitchWeapon(Forge3D.F3DFXType type)
     {
         CmdSwitch(type);

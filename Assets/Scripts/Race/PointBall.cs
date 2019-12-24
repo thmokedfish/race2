@@ -14,7 +14,7 @@ public class PointBall : NetworkBehaviour
             Debug.Log("trigger enter");
             if (isServer)
             {
-                ScoreManager.Instance.GetBall(playerControl.teamID, playerControl.playerID);
+                ScoreManager.Instance.ServerGetBall(playerControl.teamID, playerControl.playerID);
             }
             Destroy(this.gameObject);
         }
