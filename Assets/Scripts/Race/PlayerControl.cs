@@ -34,7 +34,7 @@ public class PlayerControl :NetworkBehaviour
         SetFreeLookCam();
         //GameManager.Instance.inputManager.vehicleController = this.GetComponent<NWH.VehiclePhysics.VehicleController>();
         Debug.Log(this.gameObject.name+"  "+isLocalPlayer);
-       // this.GetComponent<NWH.VehiclePhysics.DesktopInputManager>().vehicleController = this.GetComponent<NWH.VehiclePhysics.VehicleController>();
+        // this.GetComponent<NWH.VehiclePhysics.DesktopInputManager>().vehicleController = this.GetComponent<NWH.VehiclePhysics.VehicleController>();
         WeaponGrade = 0;
         SwitchWeapon(GameManager.Instance.WeaponTypes[WeaponGrade]);
     }
