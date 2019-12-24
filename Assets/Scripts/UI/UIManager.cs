@@ -7,7 +7,12 @@ using UnityEngine.Networking;
 public class UIManager : MonoBehaviour
 {
     public static UIManager Instance;
+
+    public Text GameTimingText;
+
+    public GameObject WinPanel;
     public Text WinText;
+
     public GameObject Crosshair;
     public Slider hpSlider;
     public Image TimingImage;

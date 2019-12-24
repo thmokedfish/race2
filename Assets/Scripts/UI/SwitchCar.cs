@@ -20,6 +20,7 @@ public class SwitchCar : MonoBehaviour
         for(int i=0;i<count;i++)
         {
             Icons[i] = CarImages.GetChild(i);
+            Icons[i].localPosition = new Vector3(Screen.width / 2 + edgeX, 0, 0);
         }
 
         Icons[current].localPosition = Vector3.zero;

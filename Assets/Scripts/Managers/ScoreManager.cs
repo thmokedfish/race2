@@ -6,13 +6,14 @@ using UnityEngine.Networking;
 public class ScoreManager : NetworkBehaviour
 {
     public static ScoreManager Instance { get; private set; }
+
+    public int TotalSeconds = 300;
     public GameObject ballPrefab;
-    private int nextBallScore;
+    public int BallScore;
     //private List<Text> scoreText = new List<Text>();      //每当有玩家连接，add
     private Image timingImage;
     private List<Sprite> timingSprites = new List<Sprite>(5);
     public float radius;
-    public int totalBallCount;
     public Button startButton;
     private Text winText;
     public Team[] team = new Team[2];
@@ -36,9 +37,8 @@ public class ScoreManager : NetworkBehaviour
     public override void OnStartServer()
     {
         startButton=Instantiate(this.startButton, UIManager.Instance.transform);
-        startButton.onClick.AddListener(StartGame);
-        startButton.onClick.AddListener(GameManager.Instance.ServerStartGameBoxTiming);
-        nextBallScore = 1;
+        startButton.onClick.AddListener(ServerStartGame);
+        BallScore = 1;
     }
 
     public override void OnStartClient()
@@ -50,20 +50,12 @@ public class ScoreManager : NetworkBehaviour
         UIManager.Instance.SetTeamScoreUI(team[1]);
     }
 
-    public void ServerGetBall(int teamID,int playerID)
+    public void ServerGetBall(int teamID, int playerID)
     {
-        GetPoint(teamID,playerID, nextBallScore);
-        totalBallCount--;
-        if (totalBallCount <= 0)
-        {
-           // SetWinner
-        }
-        else
-        {
-            nextBallScore++;
-            //StartCoroutine(StartTiming());
-            RpcStartTiming();
-        }
+        GetPoint(teamID, playerID, BallScore);
+        //StartCoroutine(StartTiming());
+        RpcStartBallTiming();
+
         RpcSetScoreText(teamID);
     }
     public void GetPoint(int teamID,int playerID,int score)
@@ -82,18 +74,26 @@ public class ScoreManager : NetworkBehaviour
     {
         //scoreText[playerID].text = "Player" + playerID + ": " + playerScore[playerID];
     }
-    private void StartGame()
+    private void ServerStartGame()
     {
+        GameManager.Instance.ServerStartBoxTiming();
         // StartCoroutine(StartTiming());
-        RpcStartTiming();
+        RpcStartBallTiming();
+        RpcStartGameTiming();
     }
     [ClientRpc]
-    void RpcStartTiming()
+    void RpcStartGameTiming()
+    {
+        UIManager.Instance.GameTimingText.GetComponent<Race.Timing>().ClientStartGameTiming(TotalSeconds);
+    }
+
+    [ClientRpc]
+    void RpcStartBallTiming()
     {
         Debug.Log("rpc starttimging");
-        StartCoroutine(StartTiming());
+        StartCoroutine(StartBallTiming());
     }
-    IEnumerator StartTiming()
+    IEnumerator StartBallTiming()
     {
         timingImage.gameObject.SetActive(true);
         for (int i =timingSprites.Count-1; i >=0; i--)
@@ -157,5 +157,40 @@ public class ScoreManager : NetworkBehaviour
         team[teamID].teamScore -= dropped;
         //spawn point box
         RpcSetScoreText(teamID);
+    }
+
+
+    public void ServerEndGame()
+    {
+        if (!isServer) { return; }
+        int winner = -1;
+        if(team[0].teamScore>team[1].teamScore)
+        {
+            winner = 0;
+        }
+        else if(team[0].teamScore<team[1].teamScore)
+        {
+            winner = 1;
+        }
+        RpcSetWinner(winner);
+    }
+
+
+    void RpcSetWinner(int team)
+    {
+        UIManager.Instance.WinPanel.SetActive(true);
+        switch(team)
+        {
+            case 0:
+                winText.text = "队伍一胜利";
+                break;
+            case 1:
+                winText.text = "队伍二胜利";
+                break;
+            default:
+                winText.text = "平局";
+                break;
+        }
+        
     }
 }

@@ -12867,6 +12867,7 @@ GameObject:
   - component: {fileID: 6788298259227677807}
   - component: {fileID: 8485596759574714907}
   - component: {fileID: 3834311071968392912}
+  - component: {fileID: 1322166546151611294}
   m_Layer: 0
   m_Name: Car2
   m_TagString: Untagged
@@ -13431,6 +13432,22 @@ MonoBehaviour:
   m_MovementThreshold: 0.001
   m_InterpolateRotation: 0.5
   m_InterpolateMovement: 0.5
+--- !u!114 &1322166546151611294
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8049967613309322434}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0e6bf8638cc34cd4890ee102c6727ea4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  inputType: 0
+  verticalInputType: 0
+  vehicleChanger: {fileID: 0}
+  vehicleController: {fileID: 0}
 --- !u!1 &8049967613310278922
 GameObject:
   m_ObjectHideFlags: 0
@@ -20504,11 +20521,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 8049967613309322446}
     m_Modifications:
-    - target: {fileID: 2727663711536940615, guid: 43ba7af9c92dc574fb2cc1542d0b470c,
-        type: 3}
-      propertyPath: m_Name
-      value: Turret
-      objectReference: {fileID: 0}
     - target: {fileID: 2727663711536940610, guid: 43ba7af9c92dc574fb2cc1542d0b470c,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -20578,6 +20590,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalScale.z
       value: 0.35175
+      objectReference: {fileID: 0}
+    - target: {fileID: 2727663711536940615, guid: 43ba7af9c92dc574fb2cc1542d0b470c,
+        type: 3}
+      propertyPath: m_Name
+      value: Turret
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 43ba7af9c92dc574fb2cc1542d0b470c, type: 3}

@@ -41,12 +41,12 @@ namespace NWH.VehiclePhysics
         /// </summary>
         [Tooltip("Set to null (none) if you want to use your own vehicle controller. If this is set to other than null current active vehicle according " +
             "to the assigned vehicle changer will be used instead of the assigned vehicle controller.")]
-        public VehicleChanger vehicleChanger;
+       // public VehicleChanger vehicleChanger;
 
         /// <summary>
         /// If you want to use this script with a single vehicle or want to set your own vehicle controller from script set vehicle changer field to null / none.
         /// </summary>
-        [Tooltip("If you want to use this script with a single vehicle or want to set your own vehicle controller from script set vehicle changer field to null / none.")]
+      //  [Tooltip("If you want to use this script with a single vehicle or want to set your own vehicle controller from script set vehicle changer field to null / none.")]
         public VehicleController vehicleController;
 
         private float vertical = 0f;
@@ -71,15 +71,15 @@ namespace NWH.VehiclePhysics
 
         private void Start()
         {
-            vehicleController = GetComponent<VehicleController>();
+            //vehicleController = GetComponent<VehicleController>();
         }
 
 
         void Update()
         {
-            if (vehicleChanger != null)
+            //if (vehicleChanger != null)
             {
-                vehicleController = vehicleChanger.ActiveVehicleController;
+             //   vehicleController = vehicleChanger.ActiveVehicleController;
             }
 
             try

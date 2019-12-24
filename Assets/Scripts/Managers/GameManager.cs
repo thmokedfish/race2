@@ -15,7 +15,7 @@ public class GameManager : NetworkBehaviour
     public PlayerControl LocalPlayer { get { return _localPlayer; } set { _localPlayer = value; } }
 
     [HideInInspector] public MyNetworkManager networkManager;
-    [HideInInspector] public NWH.VehiclePhysics.DesktopInputManager inputManager;
+    //[HideInInspector] public NWH.VehiclePhysics.DesktopInputManager inputManager;
     [HideInInspector] public Team[] team = new Team[2];
     public GameObject boomEffect;
     public Forge3D.F3DFXType[] WeaponTypes;
@@ -29,7 +29,7 @@ public class GameManager : NetworkBehaviour
         Instance = this;
         Camera.main.gameObject.AddComponent(typeof(CinemachineBrain));
         networkManager = GameObject.Find("NetworkManager").GetComponent<MyNetworkManager>();
-        inputManager = GameObject.Find("Scripts/VehicleManager").GetComponent<NWH.VehiclePhysics.DesktopInputManager>();
+        //inputManager = GameObject.Find("Scripts/VehicleManager").GetComponent<NWH.VehiclePhysics.DesktopInputManager>();
         Transform TeamManager = GameObject.Find("Scripts/TeamManager").transform;
         team[0] = TeamManager.GetChild(0).GetComponent<Team>();
         team[1] = TeamManager.GetChild(1).GetComponent<Team>();
@@ -100,7 +100,7 @@ public class GameManager : NetworkBehaviour
         CmdStartBoxTiming(boxIndex);
     }
 
-    public void ServerStartGameBoxTiming()
+    public void ServerStartBoxTiming()
     {
         RpcSetIcon(0, false);
         RpcSetIcon(1, false);
@@ -144,5 +144,6 @@ public class GameManager : NetworkBehaviour
     }
 
     #endregion 
+
 
 }

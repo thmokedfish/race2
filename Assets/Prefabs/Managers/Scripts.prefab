@@ -156,14 +156,13 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2403100047855169756}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0e6bf8638cc34cd4890ee102c6727ea4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   inputType: 0
   verticalInputType: 0
-  vehicleChanger: {fileID: 0}
   vehicleController: {fileID: 0}
 --- !u!1 &2404042516916640308
 GameObject:
@@ -598,11 +597,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2404042517875806893}
     m_Modifications:
-    - target: {fileID: 4539424897154192324, guid: c7bb137675f31ef4a9f1efca69551e2d,
-        type: 3}
-      propertyPath: m_Name
-      value: PoolManager
-      objectReference: {fileID: 0}
     - target: {fileID: 4539424897154192330, guid: c7bb137675f31ef4a9f1efca69551e2d,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -657,6 +651,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4539424897154192324, guid: c7bb137675f31ef4a9f1efca69551e2d,
+        type: 3}
+      propertyPath: m_Name
+      value: PoolManager
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c7bb137675f31ef4a9f1efca69551e2d, type: 3}
@@ -796,11 +795,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2404042517875806893}
     m_Modifications:
-    - target: {fileID: 2773558694074869667, guid: 1b209a6652d97ec41a9488145fba34d5,
-        type: 3}
-      propertyPath: m_Name
-      value: _Main
-      objectReference: {fileID: 0}
     - target: {fileID: 2773558694074869669, guid: 1b209a6652d97ec41a9488145fba34d5,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -855,6 +849,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2773558694074869667, guid: 1b209a6652d97ec41a9488145fba34d5,
+        type: 3}
+      propertyPath: m_Name
+      value: _Main
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1b209a6652d97ec41a9488145fba34d5, type: 3}

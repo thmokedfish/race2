@@ -4995,6 +4995,7 @@ GameObject:
   - component: {fileID: 7379910132344107058}
   - component: {fileID: 9005259315364696334}
   - component: {fileID: 583102886084077372}
+  - component: {fileID: 773225944801742544}
   m_Layer: 0
   m_Name: Car1
   m_TagString: Untagged
@@ -5558,6 +5559,22 @@ MonoBehaviour:
   m_MovementThreshold: 0.001
   m_InterpolateRotation: 0.5
   m_InterpolateMovement: 0.5
+--- !u!114 &773225944801742544
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6601316615773509037}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0e6bf8638cc34cd4890ee102c6727ea4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  inputType: 0
+  verticalInputType: 0
+  vehicleChanger: {fileID: 0}
+  vehicleController: {fileID: 0}
 --- !u!1 &6601316615802084092
 GameObject:
   m_ObjectHideFlags: 0
@@ -20819,15 +20836,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 43ba7af9c92dc574fb2cc1542d0b470c, type: 3}
---- !u!4 &2271542500781482588 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 2727663711536940610, guid: 43ba7af9c92dc574fb2cc1542d0b470c,
-    type: 3}
-  m_PrefabInstance: {fileID: 4205438939670668318}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &2271542501790203125 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2727663712809933035, guid: 43ba7af9c92dc574fb2cc1542d0b470c,
+    type: 3}
+  m_PrefabInstance: {fileID: 4205438939670668318}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &2271542500781482588 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2727663711536940610, guid: 43ba7af9c92dc574fb2cc1542d0b470c,
     type: 3}
   m_PrefabInstance: {fileID: 4205438939670668318}
   m_PrefabAsset: {fileID: 0}
