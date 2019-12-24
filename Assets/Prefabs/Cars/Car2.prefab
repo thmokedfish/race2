@@ -20503,11 +20503,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 8049967613309322446}
     m_Modifications:
-    - target: {fileID: 2727663711536940615, guid: 43ba7af9c92dc574fb2cc1542d0b470c,
-        type: 3}
-      propertyPath: m_Name
-      value: Turret
-      objectReference: {fileID: 0}
     - target: {fileID: 2727663711536940610, guid: 43ba7af9c92dc574fb2cc1542d0b470c,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -20577,6 +20572,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalScale.z
       value: 0.35175
+      objectReference: {fileID: 0}
+    - target: {fileID: 2727663711536940615, guid: 43ba7af9c92dc574fb2cc1542d0b470c,
+        type: 3}
+      propertyPath: m_Name
+      value: Turret
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 43ba7af9c92dc574fb2cc1542d0b470c, type: 3}
@@ -20718,6 +20718,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Orbits.Array.data[2].m_Radius
       value: 22.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 6212749985363246216, guid: 2c6e0a8be8df9984daeec2a58b1a19c3,
+        type: 3}
+      propertyPath: m_Lens.FieldOfView
+      value: 35
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2c6e0a8be8df9984daeec2a58b1a19c3, type: 3}

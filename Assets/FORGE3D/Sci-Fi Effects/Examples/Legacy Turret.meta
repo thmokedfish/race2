@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 0fe442b544c50f34eb90bc2c7c2722f0
+guid: 4d453aeddcde1a542a68e8d1cb2fc3f0
 labels:
 - burnout
 - debris
@@ -27,6 +27,7 @@ labels:
 - weapons
 folderAsset: yes
 DefaultImporter:
+  externalObjects: {}
   userData: 
   assetBundleName: 
   assetBundleVariant: 
