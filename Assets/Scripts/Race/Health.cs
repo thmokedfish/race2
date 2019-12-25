@@ -10,6 +10,7 @@ public class Health : NetworkBehaviour
     public int respawnTime;
     private Slider hpSlider;
     private GameObject Smoke;
+    private GameObject Fire;
     private Transform DamageText;
     private float DamageTextDisappearTime;
     private float DamageTextMoveRate;
@@ -18,6 +19,7 @@ public class Health : NetworkBehaviour
     private void Awake()
     {
         Smoke = transform.Find("Smoke").gameObject;
+        Fire = transform.Find("Fire").gameObject;
     }
     private void Start()
     {
@@ -40,6 +42,7 @@ public class Health : NetworkBehaviour
     private void OnEnable()
     {
         Smoke.SetActive(false);
+        Fire.SetActive(false);
         Brightness brightness = Camera.main.GetComponent<Brightness>();
         brightness.saturation = 1;
     }
@@ -115,6 +118,10 @@ public class Health : NetworkBehaviour
         {
             Smoke.SetActive(true);
         }
+        if(health<fullhealth/10)
+        {
+            Fire.SetActive(true);
+        }
         if (health <= 0)
         {
             Die();
@@ -124,6 +131,7 @@ public class Health : NetworkBehaviour
     void Die()      //rpc called
     {
         Smoke.SetActive(false);
+        Fire.SetActive(false);
         GameManager.Instance.PlayBoomEffect(this.transform.position);
         if (isLocalPlayer)
         {

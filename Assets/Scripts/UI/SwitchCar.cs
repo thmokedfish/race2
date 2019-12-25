@@ -40,14 +40,14 @@ public class SwitchCar : MonoBehaviour
             current++;
             current = current % Icons.Length;
             StartCoroutine(MoveIcon(current, 0,edge));
-            StartCoroutine(MoveIcon((current + 1) % Icons.Length, -edge));
+            StartCoroutine(MoveIcon((current - 1 + Icons.Length) % Icons.Length, -edge));
         }
         else
         {
             current--;
             current = (current+ Icons.Length) % Icons.Length;
             StartCoroutine(MoveIcon(current, 0,-edge));
-            StartCoroutine(MoveIcon((current - 1 + Icons.Length) % Icons.Length, edge));
+            StartCoroutine(MoveIcon((current + 1 + Icons.Length) % Icons.Length, edge));
         }
     }
     

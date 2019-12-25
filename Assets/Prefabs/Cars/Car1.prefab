@@ -5573,7 +5573,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   inputType: 0
   verticalInputType: 0
-  vehicleChanger: {fileID: 0}
   vehicleController: {fileID: 0}
 --- !u!1 &6601316615802084092
 GameObject:
@@ -20759,6 +20758,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 6601316615773509025}
     m_Modifications:
+    - target: {fileID: 2727663711536940615, guid: 43ba7af9c92dc574fb2cc1542d0b470c,
+        type: 3}
+      propertyPath: m_Name
+      value: Turret
+      objectReference: {fileID: 0}
     - target: {fileID: 2727663711536940610, guid: 43ba7af9c92dc574fb2cc1542d0b470c,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -20828,11 +20832,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalScale.z
       value: 0.35175022
-      objectReference: {fileID: 0}
-    - target: {fileID: 2727663711536940615, guid: 43ba7af9c92dc574fb2cc1542d0b470c,
-        type: 3}
-      propertyPath: m_Name
-      value: Turret
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 43ba7af9c92dc574fb2cc1542d0b470c, type: 3}

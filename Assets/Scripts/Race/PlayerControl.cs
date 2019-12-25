@@ -10,7 +10,7 @@ public class PlayerControl :NetworkBehaviour
     bool isFiring; // Is turret currently in firing state
     //public CinemachineFreeLook FreeLookCam;
     private Forge3D.F3DPlayerTurretController turrent;
-    [Range(0,1)]
+    [Range(0, 1)]
     public int prefabIndex;
     [SyncVar]
     public int teamID;//0 or 1
