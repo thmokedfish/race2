@@ -76,9 +76,12 @@ MonoBehaviour:
   m_OnlineScene: 
   m_SpawnPrefabs:
   - {fileID: 4182535406864578320, guid: b9c55797155e73b4b98740e2975066f8, type: 3}
-  - {fileID: 2480571347446951912, guid: f3acf1eb0866aff4884b5255d147ae9f, type: 3}
+  - {fileID: 4342268198093988879, guid: 4bf9db2f1a1eb4442a4b12e93c9abd39, type: 3}
   - {fileID: 7472781757345335839, guid: 9836d9066ef5bf04f9a4952cfaa599b6, type: 3}
   - {fileID: 4863413430794508644, guid: b27bfd6a439072647865bd14b16cad1b, type: 3}
+  - {fileID: 2480571347446951912, guid: f3acf1eb0866aff4884b5255d147ae9f, type: 3}
+  - {fileID: 420718156074595162, guid: bb09e316755a53e44b0c627619f95a60, type: 3}
+  - {fileID: 1841213782842116365, guid: c862314e0bfd40c4caf620fbcf38aacd, type: 3}
   m_CustomConfig: 0
   m_MaxConnections: 4
   m_ConnectionConfig:
@@ -135,6 +138,9 @@ MonoBehaviour:
   isNetworkActive: 0
   matchMaker: {fileID: 0}
   carPrefabs:
-  - {fileID: 4182535406864578320, guid: b9c55797155e73b4b98740e2975066f8, type: 3}
   - {fileID: 2480571347446951912, guid: f3acf1eb0866aff4884b5255d147ae9f, type: 3}
+  - {fileID: 4342268198093988879, guid: 4bf9db2f1a1eb4442a4b12e93c9abd39, type: 3}
+  - {fileID: 4182535406864578320, guid: b9c55797155e73b4b98740e2975066f8, type: 3}
+  - {fileID: 1841213782842116365, guid: c862314e0bfd40c4caf620fbcf38aacd, type: 3}
+  - {fileID: 420718156074595162, guid: bb09e316755a53e44b0c627619f95a60, type: 3}
   StartPositions: {fileID: 0}
